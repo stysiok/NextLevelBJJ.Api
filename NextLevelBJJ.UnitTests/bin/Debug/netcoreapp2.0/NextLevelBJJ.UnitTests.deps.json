@@ -11,8 +11,8 @@
           "MSTest.TestAdapter": "1.4.0",
           "MSTest.TestFramework": "1.4.0",
           "Microsoft.NET.Test.Sdk": "15.9.0",
-          "NextLevelBJJ.DataService": "1.0.0",
-          "NextLevelBJJ.ScheduleService": "1.0.0"
+          "NextLevelBJJ.DataServices": "1.0.0",
+          "NextLevelBJJ.WebContentServices": "1.0.0"
         },
         "runtime": {
           "NextLevelBJJ.UnitTests.dll": {}
@@ -1630,22 +1630,22 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "NextLevelBJJ.DataService/1.0.0": {
+      "NextLevelBJJ.DataServices/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.2.1",
           "Microsoft.EntityFrameworkCore.Relational": "2.2.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.1"
         },
         "runtime": {
-          "NextLevelBJJ.DataService.dll": {}
+          "NextLevelBJJ.DataServices.dll": {}
         }
       },
-      "NextLevelBJJ.ScheduleService/1.0.0": {
+      "NextLevelBJJ.WebContentServices/1.0.0": {
         "dependencies": {
           "HtmlAgilityPack": "1.8.12"
         },
         "runtime": {
-          "NextLevelBJJ.ScheduleService.dll": {}
+          "NextLevelBJJ.WebContentServices.dll": {}
         }
       }
     }
@@ -2552,12 +2552,12 @@
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
-    "NextLevelBJJ.DataService/1.0.0": {
+    "NextLevelBJJ.DataServices/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "NextLevelBJJ.ScheduleService/1.0.0": {
+    "NextLevelBJJ.WebContentServices/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

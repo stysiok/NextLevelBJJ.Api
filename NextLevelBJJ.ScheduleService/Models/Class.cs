@@ -14,5 +14,7 @@ namespace NextLevelBJJ.ScheduleService.Models
 
         public DateTime FinishHour { get; set; }
 
+        public bool IsKidsClass => Name.Contains("dzieci");
+
     }
 }

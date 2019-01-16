@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NextLevelBJJ.DataService\NextLevelBJJ.DataService.csproj" />
-    <ProjectReference Include="..\NextLevelBJJ.ScheduleService\NextLevelBJJ.ScheduleService.csproj" />
+    <ProjectReference Include="..\NextLevelBJJ.DataService\NextLevelBJJ.DataServices.csproj" />
+    <ProjectReference Include="..\NextLevelBJJ.ScheduleService\NextLevelBJJ.WebContentServices.csproj" />
   </ItemGroup>
 
 </Project>

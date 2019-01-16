@@ -3427,11 +3427,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataService.csproj",
-      "projectName": "NextLevelBJJ.DataService",
-      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataService.csproj",
+      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataServices.csproj",
+      "projectName": "NextLevelBJJ.DataServices",
+      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataServices.csproj",
       "packagesPath": "C:\\Users\\stysi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.DataService\\obj\\",
+      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.DataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

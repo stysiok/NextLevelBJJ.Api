@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.Core\\NextLevelBJJ.Core.csproj",
+      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.Core\\NextLevelBJJ.Core.csproj",
       "projectName": "NextLevelBJJ.Core",
-      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.Core\\NextLevelBJJ.Core.csproj",
+      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.Core\\NextLevelBJJ.Core.csproj",
       "packagesPath": "C:\\Users\\stysi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.Core\\obj\\",
+      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

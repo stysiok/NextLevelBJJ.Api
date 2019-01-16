@@ -4,14 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NextLevelBJJ.DataService.Models
 {
-    public partial class AttendanceTrackingContext : DbContext
+    public partial class NextLevelContext : DbContext
     {
-        public virtual DbSet<Attendances> Attendances { get; set; }
-        public virtual DbSet<MigrationHistory> MigrationHistory { get; set; }
-        public virtual DbSet<Passes> Passes { get; set; }
-        public virtual DbSet<PassTypes> PassTypes { get; set; }
-        public virtual DbSet<Settings> Settings { get; set; }
-        public virtual DbSet<Students> Students { get; set; }
+        public virtual DbSet<Attendance> Attendances { get; set; }
+        public virtual DbSet<Pass> Passes { get; set; }
+        public virtual DbSet<PassType> PassTypes { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +22,7 @@ namespace NextLevelBJJ.DataService.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Attendances>(entity =>
+            modelBuilder.Entity<Attendance>(entity =>
             {
                 entity.HasIndex(e => e.PassId)
                     .HasName("IX_Pass_Id");
@@ -47,32 +45,13 @@ namespace NextLevelBJJ.DataService.Models
                     .HasConstraintName("FK_dbo.Attendances_dbo.Students_Student_Id");
             });
 
-            modelBuilder.Entity<MigrationHistory>(entity =>
-            {
-                entity.HasKey(e => new { e.MigrationId, e.ContextKey });
-
-                entity.ToTable("__MigrationHistory");
-
-                entity.Property(e => e.MigrationId).HasMaxLength(150);
-
-                entity.Property(e => e.ContextKey).HasMaxLength(300);
-
-                entity.Property(e => e.Model).IsRequired();
-
-                entity.Property(e => e.ProductVersion)
-                    .IsRequired()
-                    .HasMaxLength(32);
-            });
-
-            modelBuilder.Entity<Passes>(entity =>
+            modelBuilder.Entity<Pass>(entity =>
             {
                 entity.HasIndex(e => e.StudentId)
                     .HasName("IX_Student_Id");
 
                 entity.HasIndex(e => e.TypeId)
                     .HasName("IX_Type_Id");
-
-                entity.Property(e => e.Discount).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Price).HasDefaultValueSql("((0))");
 
@@ -91,7 +70,7 @@ namespace NextLevelBJJ.DataService.Models
                     .HasConstraintName("FK_dbo.Passes_dbo.PassTypes_Type_Id");
             });
 
-            modelBuilder.Entity<Students>(entity =>
+            modelBuilder.Entity<Student>(entity =>
             {
                 entity.Property(e => e.Gender).HasDefaultValueSql("((0))");
             });

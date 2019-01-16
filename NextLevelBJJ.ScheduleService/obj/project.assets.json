@@ -3899,11 +3899,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.ScheduleService.csproj",
-      "projectName": "NextLevelBJJ.ScheduleService",
-      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.ScheduleService.csproj",
+      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.WebContentServices.csproj",
+      "projectName": "NextLevelBJJ.WebContentServices",
+      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.WebContentServices.csproj",
       "packagesPath": "C:\\Users\\stysi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\obj\\",
+      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

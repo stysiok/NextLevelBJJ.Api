@@ -2462,7 +2462,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "NextLevelBJJ.DataService/1.0.0": {
+      "NextLevelBJJ.DataServices/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
@@ -2471,23 +2471,23 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.1"
         },
         "compile": {
-          "bin/placeholder/NextLevelBJJ.DataService.dll": {}
+          "bin/placeholder/NextLevelBJJ.DataServices.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NextLevelBJJ.DataService.dll": {}
+          "bin/placeholder/NextLevelBJJ.DataServices.dll": {}
         }
       },
-      "NextLevelBJJ.ScheduleService/1.0.0": {
+      "NextLevelBJJ.WebContentServices/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "HtmlAgilityPack": "1.8.12"
         },
         "compile": {
-          "bin/placeholder/NextLevelBJJ.ScheduleService.dll": {}
+          "bin/placeholder/NextLevelBJJ.WebContentServices.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NextLevelBJJ.ScheduleService.dll": {}
+          "bin/placeholder/NextLevelBJJ.WebContentServices.dll": {}
         }
       }
     }
@@ -7982,15 +7982,15 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "NextLevelBJJ.DataService/1.0.0": {
+    "NextLevelBJJ.DataServices/1.0.0": {
       "type": "project",
-      "path": "../NextLevelBJJ.DataService/NextLevelBJJ.DataService.csproj",
-      "msbuildProject": "../NextLevelBJJ.DataService/NextLevelBJJ.DataService.csproj"
+      "path": "../NextLevelBJJ.DataService/NextLevelBJJ.DataServices.csproj",
+      "msbuildProject": "../NextLevelBJJ.DataService/NextLevelBJJ.DataServices.csproj"
     },
-    "NextLevelBJJ.ScheduleService/1.0.0": {
+    "NextLevelBJJ.WebContentServices/1.0.0": {
       "type": "project",
-      "path": "../NextLevelBJJ.ScheduleService/NextLevelBJJ.ScheduleService.csproj",
-      "msbuildProject": "../NextLevelBJJ.ScheduleService/NextLevelBJJ.ScheduleService.csproj"
+      "path": "../NextLevelBJJ.ScheduleService/NextLevelBJJ.WebContentServices.csproj",
+      "msbuildProject": "../NextLevelBJJ.ScheduleService/NextLevelBJJ.WebContentServices.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7999,8 +7999,8 @@
       "MSTest.TestFramework >= 1.4.0",
       "Microsoft.NET.Test.Sdk >= 15.9.0",
       "Microsoft.NETCore.App >= 2.0.0",
-      "NextLevelBJJ.DataService >= 1.0.0",
-      "NextLevelBJJ.ScheduleService >= 1.0.0"
+      "NextLevelBJJ.DataServices >= 1.0.0",
+      "NextLevelBJJ.WebContentServices >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8010,11 +8010,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\NextLevelBJJ.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\NextLevelBJJ.UnitTests.csproj",
       "projectName": "NextLevelBJJ.UnitTests",
-      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\NextLevelBJJ.UnitTests.csproj",
+      "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\NextLevelBJJ.UnitTests.csproj",
       "packagesPath": "C:\\Users\\stysi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\obj\\",
+      "outputPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8033,11 +8033,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataService.csproj": {
-              "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataService.csproj"
+            "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataServices.csproj": {
+              "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.DataService\\NextLevelBJJ.DataServices.csproj"
             },
-            "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.ScheduleService.csproj": {
-              "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\NextLevelBJJ\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.ScheduleService.csproj"
+            "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.WebContentServices.csproj": {
+              "projectPath": "C:\\Users\\stysi\\Documents\\NextLevelBJJStuff\\repo\\NextLevelBJJ\\NextLevelBJJ.ScheduleService\\NextLevelBJJ.WebContentServices.csproj"
             }
           }
         }

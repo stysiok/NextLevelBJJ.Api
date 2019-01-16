@@ -1,0 +1,9 @@
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\bin\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.deps.json
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\bin\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.dll
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\bin\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.pdb
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.csproj.CoreCompileInputs.cache
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.AssemblyInfoInputs.cache
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.AssemblyInfo.cs
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.dll
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.pdb
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.ScheduleService\obj\Debug\netcoreapp2.0\NextLevelBJJ.WebContentServices.csprojAssemblyReference.cache
