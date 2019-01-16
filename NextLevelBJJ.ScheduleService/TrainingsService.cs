@@ -1,23 +1,19 @@
-﻿using HtmlAgilityPack;
-using NextLevelBJJ.ScheduleService.Models;
+﻿using NextLevelBJJ.ScheduleService.Models;
+using NextLevelBJJ.WebContentServices.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace NextLevelBJJ.ScheduleService
 {
-    public class TrainingsService
+    public class TrainingsService : AbstractWebContent, ITrainingsService
     {
         private Dictionary<DayOfWeek, string> _daySiteIdDictionary;
-
-        private HtmlDocument _htmlDoc;
-
-        public TrainingsService()
+        
+        public TrainingsService() : base(@"https://www.nextlevelbjj.pl/grafik")
         {
-            _htmlDoc = LoadHtmlSchedule();
             _daySiteIdDictionary = new Dictionary<DayOfWeek, string>()
             {
                 { DayOfWeek.Monday, "comp-jlqn2pas" },
@@ -39,7 +35,7 @@ namespace NextLevelBJJ.ScheduleService
             var xPathSelector = @"//*[@id='" + _daySiteIdDictionary[dayOfWeek] + "']";
             var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})\s{3}(.*)";
 
-            var traingDayText = _htmlDoc.DocumentNode
+            var traingDayText = HtmlDocument.DocumentNode
                 .SelectSingleNode(xPathSelector)
                 .InnerText
                 .Replace("&nbsp;", " ");
@@ -71,15 +67,7 @@ namespace NextLevelBJJ.ScheduleService
 
             return week;
         }
-
-        private HtmlDocument LoadHtmlSchedule()
-        {
-            var siteUrl = @"https://www.nextlevelbjj.pl/grafik";
-            var web = new HtmlWeb();
-
-            return web.Load(siteUrl);
-        }
-
+        
         private IEnumerable<Class> MapMatchesToClasses(MatchCollection collection, DayOfWeek day)
         => collection.Select(m =>
                 {

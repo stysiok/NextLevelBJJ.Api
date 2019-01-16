@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NextLevelBJJ.ScheduleService
+namespace NextLevelBJJ.WebContentServices.Abstraction
 {
-    public class PlanningService
+    interface IPriceListService
     {
-
     }
 }
