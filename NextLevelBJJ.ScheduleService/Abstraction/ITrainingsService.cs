@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace NextLevelBJJ.WebContentServices.Abstraction
 {
-    interface ITrainingsService
+    public interface ITrainingsService
     {
         TrainingDay GetTrainingDay(DayOfWeek dayOfWeek);
 

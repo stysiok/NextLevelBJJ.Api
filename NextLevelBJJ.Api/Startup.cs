@@ -12,6 +12,13 @@ using GraphiQl;
 using GraphQL;
 using GraphQL.Types;
 using NextLevelBJJ.Api.GraphQLClasses;
+using NextLevelBJJ.DataService.Models;
+using Microsoft.EntityFrameworkCore;
+using NextLevelBJJ.DataServices;
+using NextLevelBJJ.DataServices.Abstraction;
+using NextLevelBJJ.Api.Types;
+using NextLevelBJJ.ScheduleService;
+using NextLevelBJJ.WebContentServices.Abstraction;
 
 namespace NextLevelBJJ.Api
 {
@@ -28,17 +35,32 @@ namespace NextLevelBJJ.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            //Schema
-            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
-            services.AddSingleton<ISchema, NextLevelBJJSchema>();
-
-            //Main Graphql objs
-            services.AddScoped<IDocumentExecuter, DocumentExecuter>();
-            services.AddSingleton<GraphQLQuery>();
-            services.AddSingleton<NextLevelBJJQuery>();
+            
+            //Types
+            services.AddSingleton<AttendanceType>();
+            services.AddSingleton<ClassType>();
+            services.AddSingleton<Types.PassType>();
+            services.AddSingleton<PassTypeType>();
+            services.AddSingleton<StudentType>();
+            services.AddSingleton<TrainingDayType>();
 
             
+            //Services & Database
+            services.AddTransient<IStudentsService, StudentsService>();
+            services.AddDbContext<NextLevelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NextLevelDatabase")));
+            services.AddTransient<ITrainingsService, TrainingsService>();
+
+            
+            
+            //Main Graphql objs
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<GraphQLQuery>();
+            services.AddTransient<NextLevelBJJQuery>();
+
+            var sp = services.BuildServiceProvider();
+            //Schema
+            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(type => sp.GetService(type)));
+            services.AddSingleton<ISchema, NextLevelBJJSchema>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
