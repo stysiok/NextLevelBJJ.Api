@@ -1,5 +1,9 @@
-﻿using GraphQL.Types;
+﻿using AutoMapper;
+using GraphQL;
+using GraphQL.Types;
 using NextLevelBJJ.Api.DTO;
+using NextLevelBJJ.DataService.Models;
+using NextLevelBJJ.DataServices.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +13,7 @@ namespace NextLevelBJJ.Api.Types
 {
     public class StudentType : ObjectGraphType<StudentDto>
     {
-        public StudentType()
+        public StudentType(IAttendancesService attendancesService, IPassesService passesService, IMapper mapper)
         {
             Name = "Student";
             Description = "Student in the academy";
@@ -28,7 +32,17 @@ namespace NextLevelBJJ.Api.Types
                 description: "Student's attandances at the trainings",
                 resolve: ctx =>
                 {
-                    return new ListGraphType<AttendanceType>();
+                    List<Attendance> result = null;
+                    try
+                    {
+                        result = attendancesService.GetStudentAttendences(ctx.Source.Id, 0, 8).Result;
+                    }
+                    catch (Exception e)
+                    {
+                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o uczęszczaniu do klubu"));
+                    }
+
+                    return mapper.Map<List<AttendanceDto>>(result);
                 }
             );
             Field<ListGraphType<PassType>>(
@@ -36,7 +50,17 @@ namespace NextLevelBJJ.Api.Types
                 description: "Student's passes to the academy",
                 resolve: ctx =>
                 {
-                    return new ListGraphType<PassType>();
+                    List<Pass> result = null;
+                    try
+                    {
+                        result = passesService.GetPassesByStudentId(ctx.Source.Id).Result;
+                    }
+                    catch (Exception e)
+                    {
+                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o karnetach klubowicza"));
+                    }
+
+                    return mapper.Map<List<PassDto>>(result);
                 }
             );
         }

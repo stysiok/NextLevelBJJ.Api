@@ -8,6 +8,6 @@ namespace NextLevelBJJ.DataServices.Abstraction
 {
     public interface IPassesService
     {
-        Task<Pass> GetPassByStudentId(int studentId);
+        Task<List<Pass>> GetPassesByStudentId(int studentId);
     }
 }

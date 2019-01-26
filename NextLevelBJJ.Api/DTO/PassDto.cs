@@ -14,7 +14,7 @@ namespace NextLevelBJJ.Api.DTO
         public DateTime ExpirationDate { get; set; }
         public int? StudentId { get; set; }
         public int Price { get; set; }
-        public int? TypeId { get; set; }
+        public int TypeId { get; set; }
 
         public StudentDto Student { get; set; }
         public PassTypeDto Type { get; set; }

@@ -10,9 +10,9 @@ namespace NextLevelBJJ.ScheduleService.Models
 
         public string Name { get; set; }
 
-        public DateTime StartHour { get; set; }
+        public TimeSpan StartHour { get; set; }
 
-        public DateTime FinishHour { get; set; }
+        public TimeSpan FinishHour { get; set; }
 
         public bool IsKidsClass => Name.Contains("dzieci");
 

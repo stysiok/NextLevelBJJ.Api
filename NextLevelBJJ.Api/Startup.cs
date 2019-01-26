@@ -19,6 +19,10 @@ using NextLevelBJJ.DataServices.Abstraction;
 using NextLevelBJJ.Api.Types;
 using NextLevelBJJ.ScheduleService;
 using NextLevelBJJ.WebContentServices.Abstraction;
+using AutoMapper;
+using NextLevelBJJ.Api.DTO;
+using NextLevelBJJ.ScheduleService.Models;
+using System.Globalization;
 
 namespace NextLevelBJJ.Api
 {
@@ -43,21 +47,24 @@ namespace NextLevelBJJ.Api
             services.AddSingleton<PassTypeType>();
             services.AddSingleton<StudentType>();
             services.AddSingleton<TrainingDayType>();
-
             
             //Services & Database
             services.AddTransient<IStudentsService, StudentsService>();
+            services.AddTransient<IPassesService, PassesService>();
+            services.AddTransient<IPassTypesService, PassTypesService>();
+            services.AddTransient<IAttendancesService, AttendancesService>();
+
             services.AddDbContext<NextLevelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NextLevelDatabase")));
             services.AddTransient<ITrainingsService, TrainingsService>();
-
-            
             
             //Main Graphql objs
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<GraphQLQuery>();
             services.AddTransient<NextLevelBJJQuery>();
+            services.AddSingleton<IMapper>(MapperConfiguration().CreateMapper());
 
             var sp = services.BuildServiceProvider();
+
             //Schema
             services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(type => sp.GetService(type)));
             services.AddSingleton<ISchema, NextLevelBJJSchema>();
@@ -75,5 +82,29 @@ namespace NextLevelBJJ.Api
 
             app.UseMvc();
         }
+
+        private AutoMapper.IConfigurationProvider MapperConfiguration()
+        {
+            var culture = new CultureInfo("pl-PL");
+
+            return new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Attendance, AttendanceDto>();
+
+                cfg.CreateMap<Class, ClassDto>()
+                .ForMember(dest => dest.Day, 
+                    opts => opts.MapFrom(src => culture.DateTimeFormat.GetDayName(src.Day).ToString()));
+
+                cfg.CreateMap<Pass, PassDto>();
+
+                cfg.CreateMap<DataService.Models.PassType, PassTypeDto>();
+
+                cfg.CreateMap<Student, StudentDto>();
+
+                cfg.CreateMap<TrainingDay, TrainingDayDto>()
+                .ForMember(dest => dest.Day, 
+                    opts => opts.MapFrom(src => culture.DateTimeFormat.GetDayName(src.Day).ToString()));
+            });
+        } 
     }
 }

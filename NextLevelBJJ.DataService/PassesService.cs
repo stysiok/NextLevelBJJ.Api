@@ -1,6 +1,7 @@
 ﻿using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices.Abstraction;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,9 +16,9 @@ namespace NextLevelBJJ.DataServices
             _db = db;
         }
 
-        public Task<Pass> GetPassByStudentId(int studentId)
+        public Task<List<Pass>> GetPassesByStudentId(int studentId)
         {
-            return Task.FromResult(_db.Passes.Last(p => p.StudentId == studentId && p.IsEnabled && !p.IsDeleted));
+            return Task.FromResult(new List<Pass> { _db.Passes.Last(p => p.StudentId == studentId && p.IsEnabled && !p.IsDeleted) });
         }
     }
 }

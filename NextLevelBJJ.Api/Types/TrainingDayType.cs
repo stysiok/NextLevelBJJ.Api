@@ -14,7 +14,7 @@ namespace NextLevelBJJ.Api.Types
         {
             Name = "TrainingDay";
             Description = "Training Day in the academy";
-            Field(td => td.Day, type: typeof(StringGraphType)).Description("Day of the week");
+            Field(td => td.Day).Description("Day of the week");
             Field(td => td.Classes, type: typeof(ListGraphType<ClassType>)).Description("Classes on the day");
         }
     }

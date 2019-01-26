@@ -29,16 +29,21 @@ namespace NextLevelBJJ.ScheduleService
         {
             if (!_daySiteIdDictionary.ContainsKey(dayOfWeek))
             {
-                return null;
+                return new TrainingDay
+                {
+                    Day = dayOfWeek,
+                    Classes = null
+                };
             }
 
             var xPathSelector = @"//*[@id='" + _daySiteIdDictionary[dayOfWeek] + "']";
-            var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})\s{3}(.*)";
+            var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})[\s]{0,}(.*)";
 
             var traingDayText = HtmlDocument.DocumentNode
                 .SelectSingleNode(xPathSelector)
                 .InnerText
-                .Replace("&nbsp;", " ");
+                .Replace("&nbsp;", " ")
+                .Replace("&amp;", "");
 
             var regex = new Regex(expression);
 
@@ -75,8 +80,8 @@ namespace NextLevelBJJ.ScheduleService
                     {
                         Day = day,
                         Name = m.Groups[3].Value,
-                        StartHour = DateTime.ParseExact(m.Groups[1].Value, "HH:mm", CultureInfo.InvariantCulture),
-                        FinishHour = DateTime.ParseExact(m.Groups[2].Value, "HH:mm", CultureInfo.InvariantCulture)
+                        StartHour = TimeSpan.Parse(m.Groups[1].Value, CultureInfo.CurrentCulture),
+                        FinishHour = TimeSpan.Parse(m.Groups[2].Value, CultureInfo.CurrentCulture)
                     };
                 }).ToList();
     }

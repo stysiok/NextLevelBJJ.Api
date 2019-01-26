@@ -30,7 +30,8 @@ namespace NextLevelBJJ.Api.Controllers
             {
                 Schema = schema,
                 Query = query.Query,
-                Inputs = query.Variables.ToInputs()
+                Inputs = query.Variables.ToInputs(),
+                ExposeExceptions = true
             };
 
             var result = await documentExecuter

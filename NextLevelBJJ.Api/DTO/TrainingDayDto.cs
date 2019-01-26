@@ -7,7 +7,7 @@ namespace NextLevelBJJ.Api.DTO
 {
     public class TrainingDayDto
     {
-        public DayOfWeek Day { get; set; }
+        public string Day { get; set; }
 
         public IEnumerable<ClassDto> Classes { get; set; }
     }
