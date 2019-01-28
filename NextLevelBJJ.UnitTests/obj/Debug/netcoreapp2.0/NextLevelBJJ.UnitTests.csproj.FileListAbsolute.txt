@@ -33,3 +33,7 @@ C:\Users\stysi\Documents\NextLevelBJJStuff\NextLevelBJJ\NextLevelBJJ\NextLevelBJ
 C:\Users\stysi\Documents\NextLevelBJJStuff\NextLevelBJJ\NextLevelBJJ\NextLevelBJJ.UnitTests\obj\Debug\netcoreapp2.0\NextLevelBJJ.UnitTests.pdb
 C:\Users\stysi\Documents\NextLevelBJJStuff\NextLevelBJJ\NextLevelBJJ\NextLevelBJJ.UnitTests\bin\Debug\netcoreapp2.0\NextLevelBJJ.DataService.dll
 C:\Users\stysi\Documents\NextLevelBJJStuff\NextLevelBJJ\NextLevelBJJ\NextLevelBJJ.UnitTests\bin\Debug\netcoreapp2.0\NextLevelBJJ.DataService.pdb
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.UnitTests\obj\Debug\netcoreapp2.0\NextLevelBJJ.UnitTests.csprojAssemblyReference.cache
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.UnitTests\obj\Debug\netcoreapp2.0\NextLevelBJJ.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.UnitTests\obj\Debug\netcoreapp2.0\NextLevelBJJ.UnitTests.AssemblyInfoInputs.cache
+C:\Users\stysi\Documents\NextLevelBJJStuff\repo\NextLevelBJJ\NextLevelBJJ.UnitTests\obj\Debug\netcoreapp2.0\NextLevelBJJ.UnitTests.AssemblyInfo.cs

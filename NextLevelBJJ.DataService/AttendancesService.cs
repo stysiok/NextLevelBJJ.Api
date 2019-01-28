@@ -1,9 +1,7 @@
 ﻿using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices.Abstraction;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NextLevelBJJ.DataServices
@@ -25,6 +23,19 @@ namespace NextLevelBJJ.DataServices
                 .Skip(skip)
                 .Take(take)
                 .ToList());
+        }
+
+        public Task<int> GetAttendancesAmountTrackedOnPass(int passId)
+        {
+            return Task.FromResult(_db.Attendances.Count(a => a.PassId == passId && a.IsEnabled && !a.IsDeleted));
+        }
+
+        public Task<Attendance> GetRecentAttendance(int studentId)
+        {
+            return Task.FromResult(_db.Attendances
+                .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
+                .OrderByDescending(a => a.CreatedDate)
+                .FirstOrDefault());
         }
     }
 }

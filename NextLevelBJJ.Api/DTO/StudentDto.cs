@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NextLevelBJJ.Api.DTO
 {
@@ -18,8 +16,10 @@ namespace NextLevelBJJ.Api.DTO
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public bool HasDeclaration { get; set; }
+        public AttendanceDto LastAttendance { get; set; }
 
         public ICollection<AttendanceDto> Attendances { get; set; }
         public ICollection<PassDto> Passes { get; set; }
+        public PassDto RecentPass { get; set; }
     }
 }

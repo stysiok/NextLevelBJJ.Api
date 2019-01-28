@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NextLevelBJJ.Api.DTO
 {
@@ -15,6 +12,7 @@ namespace NextLevelBJJ.Api.DTO
         public int? StudentId { get; set; }
         public int Price { get; set; }
         public int TypeId { get; set; }
+        public int RemainingEntries { get; set; }
 
         public StudentDto Student { get; set; }
         public PassTypeDto Type { get; set; }

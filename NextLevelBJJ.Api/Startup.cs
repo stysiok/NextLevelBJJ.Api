@@ -23,6 +23,7 @@ using AutoMapper;
 using NextLevelBJJ.Api.DTO;
 using NextLevelBJJ.ScheduleService.Models;
 using System.Globalization;
+using NextLevelBJJ.WebContentServices;
 
 namespace NextLevelBJJ.Api
 {
@@ -56,6 +57,7 @@ namespace NextLevelBJJ.Api
 
             services.AddDbContext<NextLevelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NextLevelDatabase")));
             services.AddTransient<ITrainingsService, TrainingsService>();
+            services.AddTransient<IClassesService, ClassesService>();
             
             //Main Graphql objs
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();

@@ -53,7 +53,7 @@ namespace NextLevelBJJ.Api.Types
                     List<Pass> result = null;
                     try
                     {
-                        result = passesService.GetPassesByStudentId(ctx.Source.Id).Result;
+                        result = passesService.GetStudentPasses(ctx.Source.Id).Result;
                     }
                     catch (Exception e)
                     {
@@ -61,6 +61,42 @@ namespace NextLevelBJJ.Api.Types
                     }
 
                     return mapper.Map<List<PassDto>>(result);
+                }
+            );
+            Field<PassType>(
+                "RecentPass",
+                description: "The most recent pass of the user (current if not expired)",
+                resolve: ctx =>
+                {
+                    Pass result = null;
+                    try
+                    {
+                        result = passesService.GetRecentStudentPass(ctx.Source.Id).Result;
+                    }
+                    catch (Exception e)
+                    {
+                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o najnowszym karnecie klubowicza"));
+                    }
+
+                    return mapper.Map<PassDto>(result);
+                }
+            );
+            Field<AttendanceType>(
+                "LastAttendance",
+                description: "The most recent visit in the club",
+                resolve: ctx =>
+                {
+                    Attendance result = null;
+                    try
+                    {
+                        result = attendancesService.GetRecentAttendance(ctx.Source.Id).Result;
+                    }
+                    catch (Exception e)
+                    {
+                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o ostatniej wizycie w klubie"));
+                    }
+
+                    return mapper.Map<AttendanceDto>(result);
                 }
             );
         }

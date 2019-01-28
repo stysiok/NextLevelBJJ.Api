@@ -18,5 +18,10 @@ namespace NextLevelBJJ.DataServices
         {
             return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEnabled && !pt.IsDeleted));
         }
+
+        public Task<int> GetPassTypeEntriesById(int passTypeId)
+        {
+            return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEnabled && !pt.IsDeleted).Entries);
+        }
     }
 }
