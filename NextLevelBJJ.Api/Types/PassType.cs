@@ -21,38 +21,22 @@ namespace NextLevelBJJ.Api.Types
             Field(p => p.StudentId, type: typeof(IdGraphType)).Description("Id of the student to whom the pass is assigned");
             Field(p => p.RemainingEntries)
                 .Description("Remaining entries on the pass")
-                .Resolve(ctx => 
+                .Resolve(ctx =>
                     {
-                        var passTypeId = ctx.Source.TypeId;
-                        int entries = 0;
+                        int result = -1;
                         try
                         {
-                            entries = passTypesService.GetPassTypeEntriesById(passTypeId).Result;
-                        }
-                        catch (Exception ex)
-                        {
-                            ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania informacji odnośnie typu karnetu"));
-                        }
+                            var passTypeId = ctx.Source.TypeId;
+                            var entries = passTypesService.GetPassTypeEntriesById(passTypeId).Result;
 
-                        var passId = ctx.Source.Id;
-                        int attendancesCount = 0;
-                        try
-                        {
-                            attendancesCount = attendancesService.GetAttendancesAmountTrackedOnPass(passId).Result;
-                        }
-                        catch (Exception ex)
-                        {
-                            ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania informacji odnośnie ilości odbytych zajęć na karnecie"));
-                        }
+                            var passId = ctx.Source.Id;
+                            var attendancesCount = attendancesService.GetAttendancesAmountTrackedOnPass(passId).Result;
 
-                        int result = 0;
-                        try
-                        {
                             result = entries - attendancesCount;
                         }
                         catch (Exception ex)
                         {
-                            ctx.Errors.Add(new ExecutionError("Błąd podczas obliczania pozostałej liczby wejść na karnecie"));
+                            ctx.Errors.Add(new ExecutionError(ex.Message));
                         }
 
                         return result;
@@ -62,16 +46,15 @@ namespace NextLevelBJJ.Api.Types
                 description: "Pass type on which the pass has been based",
                 resolve: ctx =>
                 {
-                    var passTypeId = ctx.Source.TypeId;
-
                     DataService.Models.PassType passType = null;
                     try
                     {
+                        var passTypeId = ctx.Source.TypeId;
                         passType = passTypesService.GetPassTypeById(passTypeId).Result;
                     }
                     catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania informacji odnośnie typu karnetu"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<PassTypeDto>(passType);

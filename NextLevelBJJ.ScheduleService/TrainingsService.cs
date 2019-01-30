@@ -39,16 +39,25 @@ namespace NextLevelBJJ.ScheduleService
             var xPathSelector = @"//*[@id='" + _daySiteIdDictionary[dayOfWeek] + "']";
             var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})[\s]{0,}(.*)";
 
-            var traingDayText = HtmlDocument.DocumentNode
+            string trainingDayText = "";
+
+            try
+            {
+                trainingDayText = HtmlDocument.DocumentNode
                 .SelectSingleNode(xPathSelector)
                 .InnerText
                 .Replace("&nbsp;", " ")
                 .Replace("&amp;", "")
                 .Replace("&Oacute;", "Ó");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas przetwarzania grafiku ze strony internetowej. Dodatkowa informacja: " + ex.Message);
+            }
 
             var regex = new Regex(expression);
 
-            var textGropus = regex.Matches(traingDayText);
+            var textGropus = regex.Matches(trainingDayText);
 
             return new TrainingDay
             {

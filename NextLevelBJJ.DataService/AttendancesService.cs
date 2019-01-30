@@ -1,5 +1,6 @@
 ﻿using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,25 +18,46 @@ namespace NextLevelBJJ.DataServices
 
         public Task<List<Attendance>> GetStudentAttendences(int studentId, int skip, int take)
         {
-            return Task.FromResult(_db.Attendances
+            try
+            {
+                return Task.FromResult(_db.Attendances
                 .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
                 .OrderByDescending(a => a.CreatedDate)
                 .Skip(skip)
                 .Take(take)
                 .ToList());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania uczestnictwa klubowicza w zajęciach. Dodatkowa informacja: " + ex.Message);
+            }
         }
 
         public Task<int> GetAttendancesAmountTrackedOnPass(int passId)
         {
-            return Task.FromResult(_db.Attendances.Count(a => a.PassId == passId && a.IsEnabled && !a.IsDeleted));
+            try
+            {
+                return Task.FromResult(_db.Attendances.Count(a => a.PassId == passId && a.IsEnabled && !a.IsDeleted));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania ilości odbytych treningów na danym karnecie. Dodatkowa informacja: " + ex.Message);
+            }
         }
 
         public Task<Attendance> GetRecentAttendance(int studentId)
         {
-            return Task.FromResult(_db.Attendances
-                .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
-                .OrderByDescending(a => a.CreatedDate)
-                .FirstOrDefault());
+            try
+            {
+                return Task.FromResult(_db.Attendances
+                 .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
+                 .OrderByDescending(a => a.CreatedDate)
+                 .FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania ostaniego treningu klubowicza. Dodatkowa informacja: " + ex.Message);
+            }
         }
     }
 }

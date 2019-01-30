@@ -21,9 +21,9 @@ namespace NextLevelBJJ.WebContentServices
             var classesForDay = trainingsService.GetTrainingDay(dayOfWeek);
 
             if (classesForDay.Classes == null)
-                throw new Exception("Dla dnia z podanej daty nie ma treningu");
+                return null;
 
-            var classes = kidsClassFilter ? classesForDay.Classes.Where(c => c.IsKidsClass).ToList() : classesForDay.Classes.Where(c => !c.IsKidsClass).ToList();
+            var classes = classesForDay.Classes.Where(c => c.IsKidsClass == kidsClassFilter).ToList();
             Class classObj = null;
             int minTimeDiff = Int32.MaxValue;
             foreach(var classInDay in classes)

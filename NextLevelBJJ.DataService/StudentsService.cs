@@ -1,9 +1,7 @@
 ﻿using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices.Abstraction;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NextLevelBJJ.DataServices
@@ -19,7 +17,14 @@ namespace NextLevelBJJ.DataServices
 
         public Task<Student> GetStudentByPassCode(string passCode)
         {
-            return Task.FromResult(_db.Students.FirstOrDefault(s => s.PassCode == passCode && s.IsEnabled && !s.IsDeleted));
+            try
+            {
+                return Task.FromResult(_db.Students.FirstOrDefault(s => s.PassCode == passCode && s.IsEnabled && !s.IsDeleted));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania profilu klubowicza. Dodatkowa informacja: " + ex.Message);
+            }
         }
     }
 }

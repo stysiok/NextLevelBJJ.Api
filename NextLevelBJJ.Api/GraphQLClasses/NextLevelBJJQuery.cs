@@ -36,14 +36,13 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     }
 
                     TrainingDay day = null;
-                     
                     try
                     {
                         day = trainingsService.GetTrainingDay(dayOfWeek);
                     }
                     catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania dnia treningowego"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<TrainingDayDto>(day);
@@ -61,7 +60,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     }
                     catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania tygodnia treningowego"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<List<TrainingDayDto>>(day);
@@ -82,9 +81,9 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     {
                         result = studentsService.GetStudentByPassCode(passCode).Result;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych użytkownika"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<StudentDto>(result);

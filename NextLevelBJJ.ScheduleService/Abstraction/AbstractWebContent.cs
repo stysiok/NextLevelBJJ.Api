@@ -13,7 +13,14 @@ namespace NextLevelBJJ.WebContentServices.Abstraction
         {
             var web = new HtmlWeb();
 
-            HtmlDocument = web.LoadFromWebAsync(url).Result;
+            try
+            {
+                HtmlDocument = web.LoadFromWebAsync(url).Result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania grafiku zajęć ze strony. Dodatkowa informacja: " + ex.Message);
+            }
         }
     }
 }

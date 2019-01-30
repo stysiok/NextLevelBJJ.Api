@@ -29,33 +29,17 @@ namespace NextLevelBJJ.Api.Types
                 description: "Class related to the attendance",
                 resolve: ctx =>
                 {
-                    var passId = ctx.Source.PassId;
-                    Pass pass = null;
-                    try
-                    {
-                        pass = passesService.GetPass(passId).Result;
-                    }
-                    catch (Exception ex)
-                    {
-                        ctx.Errors.Add(new ExecutionError(ex.Message));
-                    }
-
-                    var passTypeId = pass.TypeId;
-                    bool isKidsPass = false;
-                    try
-                    {
-                        isKidsPass = passTypesService.IsKidsPass(passTypeId).Result;
-                    }
-                    catch (Exception ex)
-                    {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych odnośnie typu karnetu"));
-                    }
-
-                    var dateOfCreation = ctx.Source.CreatedDate;
                     Class relatedClass = null;
                     try
                     {
+                        var passId = ctx.Source.PassId;
+                        var pass = passesService.GetPass(passId).Result;
+
+                        var isKidsPass = passTypesService.IsKidsPass(pass.TypeId).Result;
+
+                        var dateOfCreation = ctx.Source.CreatedDate;
                         relatedClass = classesService.GetClass(dateOfCreation, isKidsPass);
+
                     }
                     catch (Exception ex)
                     {

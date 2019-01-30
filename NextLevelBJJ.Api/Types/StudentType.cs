@@ -37,9 +37,9 @@ namespace NextLevelBJJ.Api.Types
                     {
                         result = attendancesService.GetStudentAttendences(ctx.Source.Id, 0, 8).Result;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o uczęszczaniu do klubu"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<List<AttendanceDto>>(result);
@@ -55,9 +55,9 @@ namespace NextLevelBJJ.Api.Types
                     {
                         result = passesService.GetStudentPasses(ctx.Source.Id).Result;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o karnetach klubowicza"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<List<PassDto>>(result);
@@ -73,9 +73,9 @@ namespace NextLevelBJJ.Api.Types
                     {
                         result = passesService.GetRecentStudentPass(ctx.Source.Id).Result;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o najnowszym karnecie klubowicza"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<PassDto>(result);
@@ -91,9 +91,9 @@ namespace NextLevelBJJ.Api.Types
                     {
                         result = attendancesService.GetRecentAttendance(ctx.Source.Id).Result;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        ctx.Errors.Add(new ExecutionError("Błąd podczas pobierania danych o ostatniej wizycie w klubie"));
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                     }
 
                     return mapper.Map<AttendanceDto>(result);
