@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NextLevelBJJ.WebContentServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NextLevelBJJ.DataServices", "NextLevelBJJ.DataService\NextLevelBJJ.DataServices.csproj", "{404192BB-0246-4D7E-8ADE-41630DA2C030}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextLevelBJJ.UnitTests", "NextLevelBJJ.UnitTests\NextLevelBJJ.UnitTests.csproj", "{E8BA1B5B-DFD4-4826-B23B-3F6502B892A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{404192BB-0246-4D7E-8ADE-41630DA2C030}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{404192BB-0246-4D7E-8ADE-41630DA2C030}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{404192BB-0246-4D7E-8ADE-41630DA2C030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8BA1B5B-DFD4-4826-B23B-3F6502B892A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8BA1B5B-DFD4-4826-B23B-3F6502B892A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8BA1B5B-DFD4-4826-B23B-3F6502B892A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8BA1B5B-DFD4-4826-B23B-3F6502B892A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

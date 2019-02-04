@@ -3,7 +3,7 @@ using GraphQL;
 using GraphQL.Types;
 using NextLevelBJJ.Api.DTO;
 using NextLevelBJJ.DataServices.Abstraction;
-using NextLevelBJJ.ScheduleService.Models;
+using NextLevelBJJ.WebContentServices.Models;
 using NextLevelBJJ.WebContentServices.Abstraction;
 using System;
 

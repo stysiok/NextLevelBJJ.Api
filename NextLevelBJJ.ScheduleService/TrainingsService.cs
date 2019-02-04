@@ -1,18 +1,21 @@
-﻿using NextLevelBJJ.ScheduleService.Models;
+﻿using NextLevelBJJ.WebContentServices.Models;
 using NextLevelBJJ.WebContentServices.Abstraction;
+using NextLevelBJJ.WebContentServices.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace NextLevelBJJ.ScheduleService
+namespace NextLevelBJJ.WebContentServices
 {
-    public class TrainingsService : AbstractWebContent, ITrainingsService
+    public class TrainingsService : ITrainingsService
     {
         private Dictionary<DayOfWeek, string> _daySiteIdDictionary;
+        private IWebHtmlLoadHelper _webHtmlLoadHelper;
+        private string _url;
         
-        public TrainingsService() : base(@"https://www.nextlevelbjj.pl/grafik")
+        public TrainingsService()
         {
             _daySiteIdDictionary = new Dictionary<DayOfWeek, string>()
             {
@@ -23,6 +26,15 @@ namespace NextLevelBJJ.ScheduleService
                 { DayOfWeek.Friday, "comp-jlqn2pb3" },
                 { DayOfWeek.Saturday, "comp-jlqn2pbr" },
             };
+            _webHtmlLoadHelper = new WebHtmlLoadHelper();
+            _url = @"https://www.nextlevelbjj.pl/grafik";
+        }
+
+        public TrainingsService(Dictionary<DayOfWeek, string> daySiteIdDictionary, IWebHtmlLoadHelper webHtmlLoadHelper, string url)
+        {
+            _daySiteIdDictionary = daySiteIdDictionary;
+            this._webHtmlLoadHelper = webHtmlLoadHelper;
+            _url = url;
         }
 
         public TrainingDay GetTrainingDay(DayOfWeek dayOfWeek)
@@ -40,10 +52,11 @@ namespace NextLevelBJJ.ScheduleService
             var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})[\s]{0,}(.*)";
 
             string trainingDayText = "";
+            var htmlDocument = _webHtmlLoadHelper.LoadContentFromUrl(_url);
 
             try
             {
-                trainingDayText = HtmlDocument.DocumentNode
+                trainingDayText = htmlDocument.DocumentNode
                 .SelectSingleNode(xPathSelector)
                 .InnerText
                 .Replace("&nbsp;", " ")

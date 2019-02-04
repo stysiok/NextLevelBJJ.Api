@@ -1,21 +1,18 @@
 ﻿using HtmlAgilityPack;
+using NextLevelBJJ.WebContentServices.Abstraction;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace NextLevelBJJ.WebContentServices.Abstraction
+namespace NextLevelBJJ.WebContentServices.Helpers
 {
-    public abstract class AbstractWebContent
+    internal class WebHtmlLoadHelper : IWebHtmlLoadHelper
     {
-        public HtmlDocument HtmlDocument { get; set; }
-
-        public AbstractWebContent(string url)
+        public HtmlDocument LoadContentFromUrl(string url)
         {
             var web = new HtmlWeb();
 
             try
             {
-                HtmlDocument = web.LoadFromWebAsync(url).Result;
+                return web.LoadFromWebAsync(url).Result;
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿using NextLevelBJJ.ScheduleService.Models;
+﻿using NextLevelBJJ.WebContentServices.Models;
 using System;
 
 namespace NextLevelBJJ.WebContentServices.Abstraction

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NextLevelBJJ.ScheduleService.Models
+namespace NextLevelBJJ.WebContentServices.Models
 {
     public class Class
     {

@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using NextLevelBJJ.DataServices;
 using NextLevelBJJ.DataServices.Abstraction;
 using NextLevelBJJ.Api.Types;
-using NextLevelBJJ.ScheduleService;
+using NextLevelBJJ.WebContentServices;
 using NextLevelBJJ.WebContentServices.Abstraction;
 using AutoMapper;
 using NextLevelBJJ.Api.DTO;
-using NextLevelBJJ.ScheduleService.Models;
+using NextLevelBJJ.WebContentServices.Models;
 using System.Globalization;
 using NextLevelBJJ.WebContentServices;
 

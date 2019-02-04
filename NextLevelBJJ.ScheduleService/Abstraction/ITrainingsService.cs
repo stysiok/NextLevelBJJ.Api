@@ -1,4 +1,4 @@
-﻿using NextLevelBJJ.ScheduleService.Models;
+﻿using NextLevelBJJ.WebContentServices.Models;
 using System;
 using System.Collections.Generic;
 
