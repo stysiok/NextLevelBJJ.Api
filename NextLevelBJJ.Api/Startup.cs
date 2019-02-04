@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using GraphiQl;
 using GraphQL;
 using GraphQL.Types;
@@ -64,6 +58,7 @@ namespace NextLevelBJJ.Api
             services.AddSingleton<GraphQLQuery>();
             services.AddTransient<NextLevelBJJQuery>();
             services.AddSingleton<IMapper>(MapperConfiguration().CreateMapper());
+            
 
             var sp = services.BuildServiceProvider();
 
@@ -91,13 +86,19 @@ namespace NextLevelBJJ.Api
 
             return new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Attendance, AttendanceDto>();
+                cfg.CreateMap<Attendance, AttendanceDto>()
+                .ForMember(dest => dest.CreatedDate,
+                    opts => opts.MapFrom(src => src.CreatedDate.AddHours(1)));
 
                 cfg.CreateMap<Class, ClassDto>()
                 .ForMember(dest => dest.Day, 
                     opts => opts.MapFrom(src => culture.DateTimeFormat.GetDayName(src.Day).ToString()));
 
-                cfg.CreateMap<Pass, PassDto>();
+                cfg.CreateMap<Pass, PassDto>()
+                .ForMember(dest => dest.CreatedDate,
+                    opts => opts.MapFrom(src => src.CreatedDate.AddHours(1)))
+                .ForMember(dest => dest.ExpirationDate,
+                    opts => opts.MapFrom(src => src.ExpirationDate.AddHours(1)));
 
                 cfg.CreateMap<DataService.Models.PassType, PassTypeDto>();
 

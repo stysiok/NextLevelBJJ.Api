@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NextLevelBJJ.DataServices.Models.Abstraction
+﻿namespace NextLevelBJJ.DataServices.Models.Abstraction
 {
     public interface IExistanceFields
     {

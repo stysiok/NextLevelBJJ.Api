@@ -1,10 +1,5 @@
 ﻿using GraphQL.Types;
 using NextLevelBJJ.Api.DTO;
-using NextLevelBJJ.WebContentServices.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NextLevelBJJ.Api.Types
 {

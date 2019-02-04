@@ -15,8 +15,8 @@ namespace NextLevelBJJ.Api.Types
             Description = "Pass which allows to train in the academy";
             Field(p => p.Id, type: typeof(IdGraphType)).Description("Id of the pass");
             Field(p => p.Price).Description("Price of the pass");
-            Field(p => p.CreatedDate).Description("Creation date of the pass");
-            Field(p => p.ExpirationDate).Description("When the pass expires");
+            Field(p => p.CreatedDate, type: typeof(DateTimeGraphType)).Description("Creation date of the pass");
+            Field(p => p.ExpirationDate, type: typeof(DateTimeGraphType)).Description("When the pass expires");
             Field(p => p.TypeId, type: typeof(IdGraphType)).Description("Id of a pass type which the pass has been based on");
             Field(p => p.StudentId, type: typeof(IdGraphType)).Description("Id of the student to whom the pass is assigned");
             Field(p => p.RemainingEntries)

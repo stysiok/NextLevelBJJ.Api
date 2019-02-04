@@ -21,7 +21,7 @@ namespace NextLevelBJJ.DataServices
             try
             {
                 return Task.FromResult(_db.Attendances
-                .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
+                .Where(a => a.StudentId == studentId && a.IsEntityAccesible)
                 .OrderByDescending(a => a.CreatedDate)
                 .Skip(skip)
                 .Take(take)
@@ -37,7 +37,7 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.Attendances.Count(a => a.PassId == passId && a.IsEnabled && !a.IsDeleted));
+                return Task.FromResult(_db.Attendances.Count(a => a.PassId == passId && a.IsEntityAccesible));
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace NextLevelBJJ.DataServices
             try
             {
                 return Task.FromResult(_db.Attendances
-                 .Where(a => a.StudentId == studentId && a.IsEnabled && !a.IsDeleted)
+                 .Where(a => a.StudentId == studentId && a.IsEntityAccesible)
                  .OrderByDescending(a => a.CreatedDate)
                  .FirstOrDefault());
             }

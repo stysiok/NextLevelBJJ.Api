@@ -19,7 +19,7 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.Students.FirstOrDefault(s => s.PassCode == passCode && s.IsEnabled && !s.IsDeleted));
+                return Task.FromResult(_db.Students.FirstOrDefault(s => s.PassCode == passCode && s.IsEntityAccesible));
             }
             catch (Exception ex)
             {

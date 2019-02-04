@@ -19,7 +19,7 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEnabled && !pt.IsDeleted));
+                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEntityAccesible));
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEnabled && !pt.IsDeleted).Entries);
+                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEntityAccesible).Entries);
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEnabled && !pt.IsDeleted).Name == "Dzieci");
+                return Task.FromResult(_db.PassTypes.FirstOrDefault(pt => pt.Id == passTypeId && pt.IsEntityAccesible).Name == "Dzieci");
             }
             catch (Exception ex)
             {

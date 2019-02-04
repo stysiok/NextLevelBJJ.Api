@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NextLevelBJJ.DataServices.Models.Abstraction
 {
@@ -14,6 +12,6 @@ namespace NextLevelBJJ.DataServices.Models.Abstraction
         public int ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public bool EntityAccesible => IsEnabled && !IsDeleted;
+        public bool IsEntityAccesible => IsEnabled && !IsDeleted;
     }
 }

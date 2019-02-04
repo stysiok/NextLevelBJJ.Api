@@ -25,10 +25,10 @@ namespace NextLevelBJJ.WebContentServices
 
             var classes = classesForDay.Classes.Where(c => c.IsKidsClass == kidsClassFilter).ToList();
             Class classObj = null;
-            int minTimeDiff = Int32.MaxValue;
+            double minTimeDiff = Int32.MaxValue;
             foreach(var classInDay in classes)
             {
-                var diffSeconds = Math.Abs((date.TimeOfDay - classInDay.StartHour).Seconds);
+                var diffSeconds = Math.Abs((date.TimeOfDay - classInDay.StartHour).TotalSeconds);
 
                 if(diffSeconds < minTimeDiff)
                 {
