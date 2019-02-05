@@ -33,7 +33,7 @@ namespace NextLevelBJJ.WebContentServices
         public TrainingsService(Dictionary<DayOfWeek, string> daySiteIdDictionary, IWebHtmlLoadHelper webHtmlLoadHelper, string url)
         {
             _daySiteIdDictionary = daySiteIdDictionary;
-            this._webHtmlLoadHelper = webHtmlLoadHelper;
+            _webHtmlLoadHelper = webHtmlLoadHelper;
             _url = url;
         }
 

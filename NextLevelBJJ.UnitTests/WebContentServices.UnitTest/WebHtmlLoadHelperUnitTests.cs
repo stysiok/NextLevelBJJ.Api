@@ -1,10 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NextLevelBJJ.WebContentServices.Abstraction;
+using System;
+using NextLevelBJJ.WebContentServices.Helpers;
 
 namespace NextLevelBJJ.UnitTests.WebContentServices.UnitTest
 {
-    class WebHtmlLoadHelperUnitTests
+    [TestClass]
+    public class WebHtmlLoadHelperUnitTests
     {
+        private readonly IWebHtmlLoadHelper webHtmlLoadHelper;
+
+        public WebHtmlLoadHelperUnitTests()
+        {
+            webHtmlLoadHelper = new WebHtmlLoadHelper();
+        }
+
+        [TestMethod]
+        public void LoadContentFromUrl_ValidUrl_ReturnsHtmlDocument()
+        {
+            string url = @"https://www.nextlevelbjj.pl/grafik";
+
+            var result = webHtmlLoadHelper.LoadContentFromUrl(url);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void LoadContentFromUrl_NotValidUrl_ThrowsException()
+        {
+            string url = @"httasdasdps://www.nexadsasdasdtlevelbjj.pl/grafdasdik";
+
+            var result = Assert.ThrowsException<Exception>(() => webHtmlLoadHelper.LoadContentFromUrl(url));
+
+            Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania grafiku zajęć ze strony. Dodatkowa informacja: "));
+        }
+
+        [TestMethod]
+        public void LoadContentFromUrl_EmptyUrl_ThrowsException()
+        {
+            string url = "";
+
+            var result = Assert.ThrowsException<Exception>(() => webHtmlLoadHelper.LoadContentFromUrl(url));
+
+            Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania grafiku zajęć ze strony. Dodatkowa informacja: "));
+        }
+
     }
 }

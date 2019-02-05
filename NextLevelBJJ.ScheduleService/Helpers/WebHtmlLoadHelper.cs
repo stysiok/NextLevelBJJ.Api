@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
 using NextLevelBJJ.WebContentServices.Abstraction;
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("NextLevelBJJ.UnitTests")]
 namespace NextLevelBJJ.WebContentServices.Helpers
 {
     internal class WebHtmlLoadHelper : IWebHtmlLoadHelper
