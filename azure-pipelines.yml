@@ -16,4 +16,4 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- scripts: dotnet test NextLevelBJJ.UnitTests\NextLevelBJJ.UnitTests.csproj
+- script: dotnet test NextLevelBJJ.UnitTests\NextLevelBJJ.UnitTests.csproj
