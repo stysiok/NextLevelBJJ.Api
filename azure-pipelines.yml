@@ -16,4 +16,8 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet test /NextLevelBJJ.UnitTests/NextLevelBJJ.UnitTests.csproj
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
