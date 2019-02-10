@@ -11,6 +11,11 @@ namespace NextLevelBJJ.DataService.Models
         public virtual DbSet<PassType> PassTypes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
 
+        public NextLevelContext()
+        {
+
+        }
+       
         public NextLevelContext(DbContextOptions options) : base(options)
         {
         }
