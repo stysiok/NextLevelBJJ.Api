@@ -1,6 +1,4 @@
-﻿using AutoFixture;
-using AutoFixture.AutoMoq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices;
@@ -8,7 +6,6 @@ using NextLevelBJJ.DataServices.Abstraction;
 using NextLevelBJJ.UnitTests.DataServices.UnitTests.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
 {
@@ -17,45 +14,13 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
     {
         Mock<NextLevelContext> nextLevelContextMock = new Mock<NextLevelContext>();
         IStudentsService studentsService;
-        Student validStudent, notEnabledStudent, deletedStudent, deletedNotEnabledStudent;
-        Fixture fixture; 
+        IDictionary<string, Student> studentTestObjects;
 
         [TestInitialize]
         public void Initialize()
         {
-            fixture = new Fixture();
-            fixture.Customize(new AutoMoqCustomization { ConfigureMembers = true });
-            fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                            .ForEach(b => fixture.Behaviors.Remove(b));
-
-            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            validStudent = fixture.Build<Student>()
-                                    .With(p => p.IsDeleted, false)
-                                    .With(p => p.IsEnabled, true)
-                                    .Create();
-            notEnabledStudent = fixture.Build<Student>()
-                                    .With(p => p.IsDeleted, false)
-                                    .With(p => p.IsEnabled, false)
-                                    .Create();
-            deletedStudent = fixture.Build<Student>()
-                                    .With(p => p.IsDeleted, true)
-                                    .With(p => p.IsEnabled, true)
-                                    .Create();
-            deletedNotEnabledStudent = fixture.Build<Student>()
-                                    .With(p => p.IsDeleted, true)
-                                    .With(p => p.IsEnabled, false)
-                                    .Create();
-
-            var students = new List<Student>
-            {
-                validStudent,
-                notEnabledStudent,
-                deletedNotEnabledStudent,
-                deletedStudent
-            };
-            var mockStudentsDbSet = DbSetHelper.CreateDbSetMock(students);
-
+            studentTestObjects = DbSetHelper.CreateDataSeed<Student>();
+            var mockStudentsDbSet = DbSetHelper.CreateDbSetMock(studentTestObjects);
 
             nextLevelContextMock.Setup(p => p.Students).Returns(mockStudentsDbSet.Object);
 
@@ -66,6 +31,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_ValidPassCode_ReturnsStudent()
         {
+            var validStudent = studentTestObjects["valid"];
             var result = studentsService.GetStudentByPassCode(validStudent.PassCode).Result;
 
             Assert.IsNotNull(result);
@@ -83,6 +49,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_NotEnabledStudent_ReturnsNull()
         {
+            var notEnabledStudent = studentTestObjects["notEnabled"];
             var result = studentsService.GetStudentByPassCode(notEnabledStudent.PassCode).Result;
 
             Assert.IsNull(result);
@@ -91,6 +58,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_DeletedStudent_ReturnsNull()
         {
+            var deletedStudent = studentTestObjects["deleted"];
             var result = studentsService.GetStudentByPassCode(deletedStudent.PassCode).Result;
 
             Assert.IsNull(result);
@@ -99,6 +67,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_DeletedNotEnabledStudent_ReturnsNull()
         {
+            var deletedNotEnabledStudent = studentTestObjects["deletedNotEnabled"];
             var result = studentsService.GetStudentByPassCode(deletedNotEnabledStudent.PassCode).Result;
 
             Assert.IsNull(result);
