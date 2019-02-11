@@ -54,7 +54,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
                 deletedNotEnabledStudent,
                 deletedStudent
             };
-            var mockStudentsDbSet = DbSetMocker.CreateDbSetMock(students);
+            var mockStudentsDbSet = DbSetHelper.CreateDbSetMock(students);
 
 
             nextLevelContextMock.Setup(p => p.Students).Returns(mockStudentsDbSet.Object);
