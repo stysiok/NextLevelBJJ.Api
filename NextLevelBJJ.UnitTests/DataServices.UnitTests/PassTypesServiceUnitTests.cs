@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
 {
     [TestClass]
-    public class PassTypesServiceUnitTests
+    public class PassTypesServiceUnitTests : UnitTestsExtensions
     {
         Mock<NextLevelContext> nextLevelContextMock = new Mock<NextLevelContext>();
         IPassTypesService passTypesService;
@@ -40,28 +40,20 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_NotEnabledStudent_ReturnsNull()
         {
-            var notEnabledPassType = passTypeList["notEnabled"];
-            var result = passTypesService.GetPassTypeById(notEnabledPassType.Id).Result;
-
-            Assert.IsNull(result);
+            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["notEnabled"].Id));
         }
 
         [TestMethod]
         public void GetStudentByPassCode_DeletedStudent_ReturnsNull()
         {
-            var deletedPassType = passTypeList["deleted"];
-            var result = passTypesService.GetPassTypeById(deletedPassType.Id).Result;
-
-            Assert.IsNull(result);
+            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["deleted"].Id));
         }
+        
 
         [TestMethod]
         public void GetStudentByPassCode_DeletedNotEnabledStudent_ReturnsNull()
         {
-            var deletedNotEnabledPassType = passTypeList["deletedNotEnabled"];
-            var result = passTypesService.GetPassTypeById(deletedNotEnabledPassType.Id).Result;
-
-            Assert.IsNull(result);
+            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["deletedNotEnabled"].Id));
         }
 
         [TestMethod]
