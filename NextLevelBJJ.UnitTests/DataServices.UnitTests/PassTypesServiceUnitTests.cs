@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AutoFixture;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices;
@@ -19,7 +20,16 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestInitialize]
         public void Initialize()
         {
+            var fixture = DbSetHelper.ConfiguredFixture();
+            var kidsPass = fixture.Build<PassType>()
+                                  .With(p => p.Name, "Dzieci")
+                                  .With(p => p.IsEnabled, true)
+                                  .With(p => p.IsDeleted, false)
+                                  .Create();
+
             passTypeList = DbSetHelper.CreateDataSeed<PassType>();
+            passTypeList.Add("validKidsPass", kidsPass);
+
             var mockStudentsDbSet = DbSetHelper.CreateDbSetMock(passTypeList);
             
             nextLevelContextMock.Setup(p => p.PassTypes).Returns(mockStudentsDbSet.Object);
@@ -40,20 +50,19 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentByPassCode_NotEnabledStudent_ReturnsNull()
         {
-            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["notEnabled"].Id));
+            MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["notEnabled"].Id));
         }
 
         [TestMethod]
         public void GetStudentByPassCode_DeletedStudent_ReturnsNull()
         {
-            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["deleted"].Id));
+            MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["deleted"].Id));
         }
-        
 
         [TestMethod]
         public void GetStudentByPassCode_DeletedNotEnabledStudent_ReturnsNull()
         {
-            Method_PassedArgument_ReturnsNull(passTypesService.GetPassTypeById(passTypeList["deletedNotEnabled"].Id));
+            MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["deletedNotEnabled"].Id));
         }
 
         [TestMethod]
@@ -64,6 +73,83 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
             var result = Assert.ThrowsException<Exception>(() => studentsService.GetPassTypeById(1).Result);
 
             Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania rodzaju karnetu. Dodatkowa informacja: "));
+        }
+
+
+        [TestMethod]
+        public void GetPassTypeEntriesById_ValidId_ReturnsPassTypeEntries()
+        {
+            var validPassType = passTypeList["valid"];
+            var result = passTypesService.GetPassTypeEntriesById(validPassType.Id).Result;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result, validPassType.Entries);
+        }
+
+        [TestMethod]
+        public void GetPassTypeEntriesById_NotEnabledStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["notEnabled"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void GetPassTypeEntriesById_DeletedStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["deleted"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void GetPassTypeEntriesById_DeletedNotEnabledStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["deletedNotEnabled"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void GetPassTypeEntriesById_NullPassTypesDbSet_ThrowsException()
+        {
+            var passTypesService = new PassTypesService(new NextLevelContext());
+
+            var result = Assert.ThrowsException<Exception>(() => passTypesService.GetPassTypeEntriesById(1).Result);
+
+            Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: "));
+        }
+
+
+        [TestMethod]
+        public void IsKidsPass_ValidId_ReturnsPassTypeEntries()
+        {
+            var validPassType = passTypeList["validKidsPass"];
+            var result = passTypesService.IsKidsPass(validPassType.Id).Result;
+            
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsKidsPass_NotEnabledStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["notEnabled"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void IsKidsPass_DeletedStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["deleted"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void IsKidsPass_DeletedNotEnabledStudent_ReturnsNull()
+        {
+            MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["deletedNotEnabled"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
+        }
+
+        [TestMethod]
+        public void IsKidsPass_NullPassTypesDbSet_ThrowsException()
+        {
+            var passTypesService = new PassTypesService(new NextLevelContext());
+
+            var result = Assert.ThrowsException<Exception>(() => passTypesService.IsKidsPass(1).Result);
+
+            Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: "));
         }
     }
 }

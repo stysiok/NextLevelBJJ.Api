@@ -30,12 +30,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests.Helpers
 
         public static IDictionary<string ,T> CreateDataSeed<T>() where T : class, IExistanceFields
         {
-            var fixture = new Fixture();
-            fixture.Customize(new AutoMoqCustomization { ConfigureMembers = true });
-            fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                            .ForEach(b => fixture.Behaviors.Remove(b));
-
-            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            var fixture = ConfiguredFixture();
 
             var validObject = fixture.Build<T>()
                                     .With(p => p.IsDeleted, false)
@@ -60,6 +55,17 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests.Helpers
                 { "deleted", deletedObject },
                 { "deletedNotEnabled", deletedNotEnabledObject }
             };
+        }
+
+        public static Fixture ConfiguredFixture()
+        {
+            var fixture = new Fixture();
+            fixture.Customize(new AutoMoqCustomization { ConfigureMembers = true });
+            fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+                            .ForEach(b => fixture.Behaviors.Remove(b));
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            return fixture;
         }
     }
 }
