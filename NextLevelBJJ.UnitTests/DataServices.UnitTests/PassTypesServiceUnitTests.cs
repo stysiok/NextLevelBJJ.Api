@@ -48,29 +48,29 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetStudentByPassCode_NotEnabledStudent_ReturnsNull()
+        public void GetPassTypeById_NotEnabledStudent_ReturnsNull()
         {
             MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["notEnabled"].Id));
         }
 
         [TestMethod]
-        public void GetStudentByPassCode_DeletedStudent_ReturnsNull()
+        public void GetPassTypeById_DeletedStudent_ReturnsNull()
         {
             MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["deleted"].Id));
         }
 
         [TestMethod]
-        public void GetStudentByPassCode_DeletedNotEnabledStudent_ReturnsNull()
+        public void GetPassTypeById_DeletedNotEnabledStudent_ReturnsNull()
         {
             MethodReturningClass_PassedArgument_ReturnsNull(() => passTypesService.GetPassTypeById(passTypeList["deletedNotEnabled"].Id));
         }
 
         [TestMethod]
-        public void GetStudentByPassCode_NullStudentsDbSet_ThrowsException()
+        public void GetPassTypeById_NullStudentsDbSet_ThrowsException()
         {
-            var studentsService = new PassTypesService(new NextLevelContext());
+            var passTypesService = new PassTypesService(new NextLevelContext());
 
-            var result = Assert.ThrowsException<Exception>(() => studentsService.GetPassTypeById(1).Result);
+            var result = Assert.ThrowsException<Exception>(() => passTypesService.GetPassTypeById(1).Result);
 
             Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania rodzaju karnetu. Dodatkowa informacja: "));
         }
