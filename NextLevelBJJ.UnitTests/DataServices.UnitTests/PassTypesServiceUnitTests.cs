@@ -87,19 +87,19 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetPassTypeEntriesById_NotEnabledStudent_ReturnsNull()
+        public void GetPassTypeEntriesById_NotEnabledStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["notEnabled"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
         }
 
         [TestMethod]
-        public void GetPassTypeEntriesById_DeletedStudent_ReturnsNull()
+        public void GetPassTypeEntriesById_DeletedStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["deleted"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
         }
 
         [TestMethod]
-        public void GetPassTypeEntriesById_DeletedNotEnabledStudent_ReturnsNull()
+        public void GetPassTypeEntriesById_DeletedNotEnabledStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.GetPassTypeEntriesById(passTypeList["deletedNotEnabled"].Id), "Błąd podczas pobierania ilości wejść opartych na rodzaju karnetu. Dodatkowa informacja: ");
         }
@@ -125,19 +125,19 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void IsKidsPass_NotEnabledStudent_ReturnsNull()
+        public void IsKidsPass_NotEnabledStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["notEnabled"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
         }
 
         [TestMethod]
-        public void IsKidsPass_DeletedStudent_ReturnsNull()
+        public void IsKidsPass_DeletedStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["deleted"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
         }
 
         [TestMethod]
-        public void IsKidsPass_DeletedNotEnabledStudent_ReturnsNull()
+        public void IsKidsPass_DeletedNotEnabledStudent_ThrowsException()
         {
             MethodReturningStruct_PassedArgument_ThrowsException(() => passTypesService.IsKidsPass(passTypeList["deletedNotEnabled"].Id), "Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: ");
         }

@@ -95,7 +95,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetRecentStudentPass_NotEnabledStudent_ReturnsNull()
+        public void GetRecentStudentPass_NotEnabledStudent_ThrowsException()
         {
             var result = Assert.ThrowsException<Exception>(() => passesService.GetRecentStudentPass(passTypeList["notEnabled"].StudentId).Result);
 
@@ -103,7 +103,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetRecentStudentPass_DeletedStudent_ReturnsNull()
+        public void GetRecentStudentPass_DeletedStudent_ThrowsException()
         {
             var result = Assert.ThrowsException<Exception>(() => passesService.GetRecentStudentPass(passTypeList["deleted"].StudentId).Result);
 
@@ -111,7 +111,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetRecentStudentPass_DeletedNotEnabledStudent_ReturnsNull()
+        public void GetRecentStudentPass_DeletedNotEnabledStudent_ThrowsException()
         {
             var result = Assert.ThrowsException<Exception>(() => passesService.GetRecentStudentPass(passTypeList["deletedNotEnabled"].StudentId).Result);
 
@@ -143,7 +143,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetStudentPasses_NotEnabledStudent_ReturnsNull()
+        public void GetStudentPasses_NotEnabledStudent_ReturnsEmptyList()
         {
             var result = passesService.GetStudentPasses(passTypeList["notEnabled"].StudentId).Result;
 
@@ -151,7 +151,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetStudentPasses_DeletedStudent_ReturnsNull()
+        public void GetStudentPasses_DeletedStudent_ReturnsEmptyList()
         {
             var result = passesService.GetStudentPasses(passTypeList["deleted"].StudentId).Result;
 
@@ -159,7 +159,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         }
 
         [TestMethod]
-        public void GetStudentPasses_DeletedNotEnabledStudent_ReturnsNull()
+        public void GetStudentPasses_DeletedNotEnabledStudent_ReturnssEmptyList()
         {
             var result = passesService.GetStudentPasses(passTypeList["deletedNotEnabled"].StudentId).Result;
 
