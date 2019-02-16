@@ -34,7 +34,8 @@ namespace NextLevelBJJ.DataServices
         {
             try
             {
-                return Task.FromResult(_db.Passes.Last(p => p.StudentId == studentId && p.IsEntityAccesible));
+                return Task.FromResult(_db.Passes.OrderByDescending(p => p.CreatedDate)
+                                                 .First(p => p.StudentId == studentId && p.IsEntityAccesible));
             }
             catch (Exception ex)
             {

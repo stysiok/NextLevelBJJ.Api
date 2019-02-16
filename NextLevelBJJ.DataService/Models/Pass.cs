@@ -12,7 +12,7 @@ namespace NextLevelBJJ.DataService.Models
         }
 
         public DateTime ExpirationDate { get; set; }
-        public int? StudentId { get; set; }
+        public int StudentId { get; set; }
         public int Price { get; set; }
         public int TypeId { get; set; }
 
