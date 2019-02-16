@@ -24,7 +24,7 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: publish
+    command: publish **\*NextLevelBJJ.Api.csproj
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
