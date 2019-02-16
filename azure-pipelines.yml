@@ -20,12 +20,12 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   ipnuts:
-  command: publish
-  projects: '**/*Api/*.csproj'
-  arguments: --output $(Build.ArtifactStagingDirectory)
+    command: publish
+    projects: '**/*Api/*.csproj'
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
