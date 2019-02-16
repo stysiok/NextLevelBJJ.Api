@@ -23,7 +23,7 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  ipnuts:
+  inputs:
     command: publish
     projects: '**/*Api/*.csproj'
     arguments: '--output $(Build.ArtifactStagingDirectory)'
