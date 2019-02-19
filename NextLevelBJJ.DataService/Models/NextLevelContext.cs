@@ -16,7 +16,7 @@ namespace NextLevelBJJ.DataService.Models
 
         }
        
-        public NextLevelContext(DbContextOptions options) : base(options)
+        public NextLevelContext(DbContextOptions<NextLevelContext> options) : base(options)
         {
         }
 

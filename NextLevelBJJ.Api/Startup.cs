@@ -17,7 +17,6 @@ using AutoMapper;
 using NextLevelBJJ.Api.DTO;
 using NextLevelBJJ.WebContentServices.Models;
 using System.Globalization;
-using NextLevelBJJ.WebContentServices;
 
 namespace NextLevelBJJ.Api
 {

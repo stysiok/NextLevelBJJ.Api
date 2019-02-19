@@ -19,7 +19,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
             Name = "Query";
             Description = "Queries to load the data";
             Field<TrainingDayType>(
-                "GetTrainingDay",
+                "training",
                 description: "Get the training day",
                 arguments: new QueryArguments(
                     new QueryArgument<StringGraphType> { Name = "day", DefaultValue = DateTime.Today.DayOfWeek.ToString() }    
@@ -48,7 +48,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                 }
             );
             Field<ListGraphType<TrainingDayType>>(
-                "GetTrainingWeek",
+                "trainings",
                 description: "Get the training week",
                 resolve: ctx =>
                 {
@@ -66,7 +66,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                 }
             );
             Field<StudentType>(
-                "GetStudentByPassId",
+                "student",
                 description: "Get student by pass id assigned to him",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "passCode" }    
