@@ -90,8 +90,12 @@ namespace NextLevelBJJ.Api
                     opts => opts.MapFrom(src => src.CreatedDate.AddHours(1)));
 
                 cfg.CreateMap<Class, ClassDto>()
-                .ForMember(dest => dest.Day, 
-                    opts => opts.MapFrom(src => culture.DateTimeFormat.GetDayName(src.Day).ToString()));
+                .ForMember(dest => dest.Day,
+                    opts => opts.MapFrom(src => culture.DateTimeFormat.GetDayName(src.Day).ToString()))
+                .ForMember(dest => dest.StartHour,
+                    opts => opts.MapFrom(src => src.StartHour.ToString(@"hh\:mm")))
+                 .ForMember(dest => dest.FinishHour,
+                    opts => opts.MapFrom(src => src.FinishHour.ToString(@"hh\:mm")));
 
                 cfg.CreateMap<Pass, PassDto>()
                 .ForMember(dest => dest.CreatedDate,

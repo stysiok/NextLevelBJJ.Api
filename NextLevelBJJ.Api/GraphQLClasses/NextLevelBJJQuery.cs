@@ -69,7 +69,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                 "student",
                 description: "Get student by pass id assigned to him",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "passCode" }    
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "passCode" }
                 ),
                 resolve: ctx =>
                 {
