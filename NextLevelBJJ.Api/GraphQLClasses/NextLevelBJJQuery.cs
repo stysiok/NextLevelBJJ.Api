@@ -14,7 +14,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
 {
     public class NextLevelBJJQuery : ObjectGraphType
     {
-        public NextLevelBJJQuery(ITrainingsService trainingsService, IStudentsService studentsService,IMapper mapper)
+        public NextLevelBJJQuery(ITrainingsService trainingsService, IStudentsService studentsService, IAttendancesService attendancesService, IPassTypesService passTypesService, IMapper mapper)
         {
             Name = "Query";
             Description = "Queries to load the data";
@@ -86,6 +86,51 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     }
 
                     return mapper.Map<StudentDto>(result);
+                }
+            );
+            Field<ListGraphType<AttendanceType>>(
+                "attendances",
+                description: "Get student's attendances",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "studentId" },
+                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "take" },
+                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "skip" }
+                ),
+                resolve: ctx =>
+                {
+                    var studentId = ctx.GetArgument<int>("studentId");
+                    var take = ctx.GetArgument<int>("take");
+                    var skip = ctx.GetArgument<int>("skip");
+
+                    List<Attendance> result = null;
+                    try
+                    {
+                        result = attendancesService.GetStudentAttendences(studentId, skip, take).Result;
+                    }
+                    catch (Exception ex)
+                    {
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
+                    }
+
+                    return mapper.Map<List<AttendanceDto>>(result);
+                }
+            );
+            Field<ListGraphType<PassTypeType>>(
+                "passTypes",
+                description: "Get all currently available pass types",
+                resolve: ctx =>
+                {
+                    List<DataService.Models.PassType> result = null;
+                    try
+                    {
+                        result = passTypesService.GetPassTypes().Result;
+                    }
+                    catch (Exception ex)
+                    {
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
+                    }
+
+                    return mapper.Map<List<PassTypeDto>>(result);
                 }
             );
         }

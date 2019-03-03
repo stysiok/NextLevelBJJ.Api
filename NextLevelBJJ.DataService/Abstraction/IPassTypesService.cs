@@ -1,4 +1,5 @@
 ﻿using NextLevelBJJ.DataService.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NextLevelBJJ.DataServices.Abstraction
@@ -10,5 +11,7 @@ namespace NextLevelBJJ.DataServices.Abstraction
         Task<int> GetPassTypeEntriesById(int passTypeId);
 
         Task<bool> IsKidsPass(int passTypeId);
+
+        Task<List<PassType>> GetPassTypes();
     }
 }

@@ -56,6 +56,8 @@ namespace NextLevelBJJ.UnitTests.WebContentServices.UnitTest
                 }
             };
 
+            trainingsService.Setup(m => m.GetTrainingWeek())
+                .Returns(new List<TrainingDay> { trainingDayMonday });
 
             trainingsService.Setup(m => m.GetTrainingDay(DayOfWeek.Monday))
                 .Returns(trainingDayMonday);

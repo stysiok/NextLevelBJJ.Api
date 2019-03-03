@@ -3,6 +3,7 @@ using NextLevelBJJ.DataServices.Abstraction;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace NextLevelBJJ.DataServices
 {
@@ -48,6 +49,18 @@ namespace NextLevelBJJ.DataServices
             catch (Exception ex)
             {
                 throw new Exception("Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: " + ex.Message);
+            }
+        }
+
+        public Task<List<PassType>> GetPassTypes()
+        {
+            try
+            {
+                return Task.FromResult(_db.PassTypes.Where(pt => pt.IsEntityAccesible).ToList());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania informacji o karnetach. Dodatkowa informacja: " + ex.Message);
             }
         }
     }

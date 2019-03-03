@@ -7,6 +7,7 @@ using NextLevelBJJ.DataServices.Abstraction;
 using NextLevelBJJ.UnitTests.DataServices.UnitTests.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
 {
@@ -150,6 +151,63 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
             var result = Assert.ThrowsException<Exception>(() => passTypesService.IsKidsPass(1).Result);
 
             Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania informacji czy karnet jest karnetem dziecięcym. Dodatkowa informacja: "));
+        }
+
+
+        [TestMethod]
+        public void GetPassTypes_ValidId_ReturnsPassTypeEntries()
+        {
+            var validPassType = passTypeList["valid"];
+            var result = passTypesService.GetPassTypes().Result;
+            
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.All(pt => pt.IsEntityAccesible));
+            CollectionAssert.AllItemsAreUnique(result);
+            CollectionAssert.AllItemsAreNotNull(result);
+            
+        }
+
+        [TestMethod]
+        public void GetPassTypes_NotEnabledStudent_ThrowsException()
+        {
+            var notEnabledPassType = passTypeList["notEnabled"];
+            var result = passTypesService.GetPassTypes().Result;
+
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.Any(pt => pt.Id == notEnabledPassType.Id));
+            Assert.IsFalse(result.Any(pt => pt.IsEntityAccesible == false));
+        }
+
+        [TestMethod]
+        public void GetPassTypes_DeletedStudent_ThrowsException()
+        {
+            var deletedPassType = passTypeList["deleted"];
+            var result = passTypesService.GetPassTypes().Result;
+
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.Any(pt => pt.Id == deletedPassType.Id));
+            Assert.IsFalse(result.Any(pt => pt.IsEntityAccesible == false));
+        }
+
+        [TestMethod]
+        public void GetPassTypes_DeletedNotEnabledStudent_ThrowsException()
+        {
+            var deletedNotEnabledPassType = passTypeList["deletedNotEnabled"];
+            var result = passTypesService.GetPassTypes().Result;
+
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.Any(pt => pt.Id == deletedNotEnabledPassType.Id));
+            Assert.IsFalse(result.Any(pt => pt.IsEntityAccesible == false));
+        }
+
+        [TestMethod]
+        public void GetPassTypes_NullPassTypesDbSet_ThrowsException()
+        {
+            var passTypesService = new PassTypesService(new NextLevelContext());
+
+            var result = Assert.ThrowsException<Exception>(() => passTypesService.GetPassTypes().Result);
+
+            Assert.IsTrue(result.Message.Contains("Błąd podczas pobierania informacji o karnetach. Dodatkowa informacja: "));
         }
     }
 }
