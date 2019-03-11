@@ -9,7 +9,7 @@ namespace NextLevelBJJ.Api.Types
 {
     public class PassType : ObjectGraphType<PassDto>
     {
-        public PassType(IPassTypesService passTypesService, IAttendancesService attendancesService, IMapper mapper)
+        public PassType(IPassesService passesService, IPassTypesService passTypesService, IAttendancesService attendancesService, IMapper mapper)
         {
             Name = "Pass";
             Description = "Pass which allows to train in the academy";
@@ -26,13 +26,8 @@ namespace NextLevelBJJ.Api.Types
                         int result = -1;
                         try
                         {
-                            var passTypeId = ctx.Source.TypeId;
-                            var entries = passTypesService.GetPassTypeEntriesById(passTypeId).Result;
-
                             var passId = ctx.Source.Id;
-                            var attendancesCount = attendancesService.GetAttendancesAmountTrackedOnPass(passId).Result;
-
-                            result = entries - attendancesCount;
+                            result = passesService.GetRemainingEntriesOnPass(passId).Result;
                         }
                         catch (Exception ex)
                         {

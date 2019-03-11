@@ -10,10 +10,14 @@ namespace NextLevelBJJ.DataServices
     public class PassesService : IPassesService
     {
         private NextLevelContext _db { get; set; }
+        private IPassTypesService _passTypesService;
+        private IAttendancesService _attendancesService;
 
-        public PassesService(NextLevelContext db)
+        public PassesService(NextLevelContext db, IPassTypesService passTypesService, IAttendancesService attendancesService)
         {
             _db = db;
+            _passTypesService = passTypesService;
+            _attendancesService = attendancesService;
         }
 
         public Task<List<Pass>> GetStudentPasses(int studentId)
@@ -48,6 +52,27 @@ namespace NextLevelBJJ.DataServices
             try
             {
                 return Task.FromResult(_db.Passes.FirstOrDefault(p => p.Id == passId && p.IsEntityAccesible));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas pobierania karnetu. Dodatkowa informacja: " + ex.Message);
+            }
+        }
+
+        public Task<int> GetRemainingEntriesOnPass(int passId)
+        {
+            try
+            {
+                return Task<int>.Factory.StartNew(() =>
+                {
+                    var pass = GetPass(passId).Result;
+
+                    var entries = _passTypesService.GetPassTypeEntriesById(pass.TypeId).Result;
+                    
+                    var attendancesCount = _attendancesService.GetAttendancesAmountTrackedOnPass(passId).Result;
+
+                    return entries - attendancesCount;
+                });
             }
             catch (Exception ex)
             {

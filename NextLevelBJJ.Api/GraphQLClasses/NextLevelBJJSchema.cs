@@ -12,6 +12,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
         public NextLevelBJJSchema(IDependencyResolver dependencyResolver) : base(dependencyResolver)
         {
             Query = dependencyResolver.Resolve<NextLevelBJJQuery>();
+            Mutation = dependencyResolver.Resolve<NextLevelBJJMutation>();
         }
     }
 }

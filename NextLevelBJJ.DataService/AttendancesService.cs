@@ -59,5 +59,34 @@ namespace NextLevelBJJ.DataServices
                 throw new Exception("Błąd podczas pobierania ostaniego treningu klubowicza. Dodatkowa informacja: " + ex.Message);
             }
         }
+
+        public Task AddAttendance(int passId, int studentId)
+        {
+            try
+            {
+                return Task.Factory.StartNew(() =>
+                {
+                    var date = DateTime.Now;
+                    var attendance = new Attendance
+                    {
+                        StudentId = studentId,
+                        PassId = passId,
+                        CreatedDate = date,
+                        ModifiedDate = date,
+                        CreatedBy = 0,
+                        ModifiedBy = 0,
+                        IsDeleted = false,
+                        IsEnabled = true,
+                        IsFree = false,                        
+                    };
+                    _db. Attendances.Add(attendance);
+                    _db.SaveChanges();
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas dodawania obecności na treningu. Dodatkowa informacja: " + ex.Message);
+            }
+        }
     }
 }

@@ -56,6 +56,7 @@ namespace NextLevelBJJ.Api
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<GraphQLQuery>();
             services.AddTransient<NextLevelBJJQuery>();
+            services.AddTransient<NextLevelBJJMutation>();
             services.AddSingleton<IMapper>(MapperConfiguration().CreateMapper());
             
 

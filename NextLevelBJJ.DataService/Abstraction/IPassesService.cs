@@ -11,5 +11,7 @@ namespace NextLevelBJJ.DataServices.Abstraction
         Task<Pass> GetRecentStudentPass(int studentId);
 
         Task<Pass> GetPass(int passId);
+
+        Task<int> GetRemainingEntriesOnPass(int passId);
     }
 }
