@@ -60,7 +60,7 @@ namespace NextLevelBJJ.DataServices
             }
         }
 
-        public Task AddAttendance(int passId, int studentId)
+        public Task<int> AddAttendance(int studentId, int passId)
         {
             try
             {
@@ -79,8 +79,8 @@ namespace NextLevelBJJ.DataServices
                         IsEnabled = true,
                         IsFree = false,                        
                     };
-                    _db. Attendances.Add(attendance);
-                    _db.SaveChanges();
+                    _db.Attendances.Add(attendance);
+                    return _db.SaveChanges();
                 });
             }
             catch (Exception ex)

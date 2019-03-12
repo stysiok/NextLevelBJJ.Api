@@ -12,6 +12,6 @@ namespace NextLevelBJJ.DataServices.Abstraction
 
         Task<Attendance> GetRecentAttendance(int studentId);
 
-        Task AddAttendance(int passId, int studentId);
+        Task<int> AddAttendance(int passId, int studentId);
     }
 }

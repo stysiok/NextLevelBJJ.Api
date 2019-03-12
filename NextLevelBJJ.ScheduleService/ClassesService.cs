@@ -42,5 +42,18 @@ namespace NextLevelBJJ.WebContentServices
 
             return classObj;
         }
+
+        public Class GetUpcomingClass(bool kidsClassFilter)
+        {
+            var currentDate = DateTime.Now;
+
+            var classesForDay = allTrainings.FirstOrDefault(t => t.Day == currentDate.DayOfWeek);
+            if (classesForDay == null)
+                return null;
+
+            return classesForDay.Classes.FirstOrDefault(c => c.IsKidsClass == kidsClassFilter 
+                && (c.StartHour >= currentDate.AddMinutes(15).TimeOfDay 
+                || c.StartHour < currentDate.AddMinutes(-15).TimeOfDay));
+        }
     }
 }

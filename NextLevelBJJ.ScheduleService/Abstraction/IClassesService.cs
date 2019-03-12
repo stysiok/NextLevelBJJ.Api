@@ -6,5 +6,7 @@ namespace NextLevelBJJ.WebContentServices.Abstraction
     public interface IClassesService
     {
         Class GetClass(DateTime date, bool kidsClassFilter);
+
+        Class GetUpcomingClass(bool kidsClassFilter);
     }
 }
