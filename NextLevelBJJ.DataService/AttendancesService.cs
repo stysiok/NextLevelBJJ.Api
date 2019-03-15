@@ -66,7 +66,7 @@ namespace NextLevelBJJ.DataServices
             {
                 return Task.Factory.StartNew(() =>
                 {
-                    var date = DateTime.Now;
+                    var date = DateTime.UtcNow;
                     var attendance = new Attendance
                     {
                         StudentId = studentId,

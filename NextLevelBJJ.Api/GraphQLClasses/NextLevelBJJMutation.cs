@@ -30,9 +30,9 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     try
                     {
                         pass = passesService.GetRecentStudentPass(studentId).Result;
-                        if (pass.ExpirationDate < DateTime.Now)
+                        if (pass.ExpirationDate < DateTime.UtcNow)
                         {
-                            //throw new ExecutionError($"Twój karnet stracił ważność w dniu {pass.ExpirationDate.Date}.");
+                            throw new ExecutionError($"Twój karnet stracił ważność w dniu {pass.ExpirationDate.Date}.");
                         }
                     }
                     catch (Exception ex)
