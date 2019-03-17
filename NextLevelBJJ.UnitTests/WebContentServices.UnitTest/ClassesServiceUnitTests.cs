@@ -113,5 +113,45 @@ namespace NextLevelBJJ.UnitTests.WebContentServices.UnitTest
 
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public void GetUpcomingClass_DateWithNoClasses_ReturnsNull()
+        {
+            var upcomingClass = classesService.GetUpcomingClass(new DateTime(2019, 03, 19), false);
+
+            Assert.IsNull(upcomingClass);
+        }
+
+        [TestMethod]
+        public void GetUpcomingClass_DateWithEarlyHour_ReturnsNull()
+        {
+            var upcomingClass = classesService.GetUpcomingClass(new DateTime(2019, 03, 18, 15, 00, 00), false);
+
+            Assert.IsNull(upcomingClass);
+        }
+
+        [TestMethod]
+        public void GetUpcomingClass_DateWith10MinToNextClass_ReturnsClass()
+        {
+            var upcomingClass = classesService.GetUpcomingClass(new DateTime(2019, 03, 18, 17, 05, 00), false);
+
+            Assert.IsNotNull(upcomingClass);
+        }
+
+        [TestMethod]
+        public void GetUpcomingClass_DateWith13MinCurrentClass_ReturnsClass()
+        {
+            var upcomingClass = classesService.GetUpcomingClass(new DateTime(2019, 03, 18, 17, 28, 00), false);
+
+            Assert.IsNotNull(upcomingClass);
+        }
+
+        [TestMethod]
+        public void GetUpcomingClass_ValidDateAndKidsClassFilter_ReturnsKidsClass()
+        {
+            var upcomingClass = classesService.GetUpcomingClass(new DateTime(2019, 03, 18, 17, 28, 00), true);
+
+            Assert.IsNotNull(upcomingClass);
+        }
     }
 }

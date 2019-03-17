@@ -32,7 +32,7 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                         pass = passesService.GetRecentStudentPass(studentId).Result;
                         if (pass.ExpirationDate < DateTime.UtcNow)
                         {
-                            throw new ExecutionError($"Twój karnet stracił ważność w dniu {pass.ExpirationDate.Date}.");
+                            throw new ExecutionError($"Twój karnet stracił ważność w dniu {pass.ExpirationDate}.");
                         }
                     }
                     catch (Exception ex)
@@ -58,10 +58,10 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                     }
 
                     var kidsFilter = ctx.GetArgument<bool>("kidsClassFilter");
-                    var upcomingClass = classesService.GetUpcomingClass(kidsFilter);
+                    var upcomingClass = classesService.GetUpcomingClass(DateTime.Now, kidsFilter);
                     if(upcomingClass == null)
                     {
-                        ctx.Errors.Add(new ExecutionError($"Na trening możesz odbić się na 15 minut przed rozpoczęciem oraz na 15 minut po jego rozpoczęciu. Albo się spóźniłeś, albo klikasz za szybko."));
+                        ctx.Errors.Add(new ExecutionError($"Na trening możesz odbić się na 15 minut przed jego rozpoczęciem oraz na 15 minut po jego rozpoczęciu."));
                         return signedIn;
                     }
 

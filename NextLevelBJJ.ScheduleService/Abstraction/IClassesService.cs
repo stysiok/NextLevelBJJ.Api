@@ -7,6 +7,6 @@ namespace NextLevelBJJ.WebContentServices.Abstraction
     {
         Class GetClass(DateTime date, bool kidsClassFilter);
 
-        Class GetUpcomingClass(bool kidsClassFilter);
+        Class GetUpcomingClass(DateTime currentDate, bool kidsClassFilter);
     }
 }

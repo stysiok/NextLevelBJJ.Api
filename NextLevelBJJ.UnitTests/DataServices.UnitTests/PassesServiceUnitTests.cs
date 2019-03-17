@@ -44,7 +44,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
 
             nextLevelContextMock.Setup(p => p.Passes).Returns(mockStudentsDbSet.Object);
 
-            passesService = new PassesService(nextLevelContextMock.Object);
+            passesService = new PassesService(nextLevelContextMock.Object, null, null);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetPass_NullPassTypesDbSet_ThrowsException()
         {
-            var passesService = new PassesService(new NextLevelContext());
+            var passesService = new PassesService(new NextLevelContext(), null, null);
 
             var result = Assert.ThrowsException<Exception>(() => passesService.GetPass(1).Result);
 
@@ -121,7 +121,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetRecentStudentPass_NullPassTypesDbSet_ThrowsException()
         {
-            var passesService = new PassesService(new NextLevelContext());
+            var passesService = new PassesService(new NextLevelContext(), null, null);
 
             var result = Assert.ThrowsException<Exception>(() => passesService.GetRecentStudentPass(1).Result);
 
@@ -169,7 +169,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentPasses_NullPassTypesDbSet_ThrowsException()
         {
-            var passesService = new PassesService(new NextLevelContext());
+            var passesService = new PassesService(new NextLevelContext(), null, null);
 
             var result = Assert.ThrowsException<Exception>(() => passesService.GetStudentPasses(1).Result);
 
