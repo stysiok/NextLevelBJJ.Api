@@ -1,5 +1,6 @@
 ﻿using NextLevelBJJ.DataService.Models;
 using NextLevelBJJ.DataServices.Abstraction;
+using NextLevelBJJ.WebContentServices.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace NextLevelBJJ.DataServices
     public class AttendancesService : IAttendancesService
     {
         private NextLevelContext _db { get; set; }
+        private IClassesService _classesService;
 
-        public AttendancesService(NextLevelContext db)
+        public AttendancesService(NextLevelContext db, IClassesService classesService)
         {
             _db = db;
+            _classesService = classesService;
         }
 
         public Task<List<Attendance>> GetStudentAttendences(int studentId, int skip, int take)
@@ -86,6 +89,32 @@ namespace NextLevelBJJ.DataServices
             catch (Exception ex)
             {
                 throw new Exception("Błąd podczas dodawania obecności na treningu. Dodatkowa informacja: " + ex.Message);
+            }
+        }
+
+        public Task<bool> CurrentClassAlreadyAttended(int studentId, bool isKidsPass)
+        {
+            try
+            {
+                return Task.Factory.StartNew(() =>
+                {
+                    var lastAttendance = GetRecentAttendance(studentId).Result;
+
+                    if (lastAttendance == null)
+                    {
+                        return true;
+                    }
+
+                    var now = DateTime.Now;
+                    var lastAttendedClass = _classesService.GetClass(lastAttendance.CreatedDate, isKidsPass);
+                    var currentClass = _classesService.GetClass(now, isKidsPass);
+
+                    return now.Date == lastAttendance.CreatedDate.Date && currentClass.Name == lastAttendedClass.Name;
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Błąd podczas sprawdzania, czy student odbył aktualne zajęcia. Dodatkowa informacja: " + ex.Message);
             }
         }
     }

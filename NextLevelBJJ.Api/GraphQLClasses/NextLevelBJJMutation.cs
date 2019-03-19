@@ -40,11 +40,10 @@ namespace NextLevelBJJ.Api.GraphQLClasses
                         ctx.Errors.Add(new ExecutionError(ex.Message));
                         return signedIn;
                     }
-
-                    int remainingEntries = 0;
+                    
                     try
                     {
-                        remainingEntries = passesService.GetRemainingEntriesOnPass(pass.Id).Result;
+                        var remainingEntries = passesService.GetRemainingEntriesOnPass(pass.Id).Result;
 
                         if (remainingEntries < 0)
                         {
@@ -59,9 +58,23 @@ namespace NextLevelBJJ.Api.GraphQLClasses
 
                     var kidsFilter = ctx.GetArgument<bool>("kidsClassFilter");
                     var upcomingClass = classesService.GetUpcomingClass(DateTime.Now, kidsFilter);
-                    if(upcomingClass == null)
+                    if (upcomingClass == null)
                     {
                         ctx.Errors.Add(new ExecutionError($"Na trening możesz odbić się na 15 minut przed jego rozpoczęciem oraz na 15 minut po jego rozpoczęciu."));
+                        return signedIn;
+                    }
+
+                    try
+                    {
+                        var isClassAlreadyAttended = attendancesService.CurrentClassAlreadyAttended(studentId, kidsFilter).Result;
+                        if (isClassAlreadyAttended)
+                        {
+                            throw new ExecutionError("Nie można zapisać się dwa razy na te same zajęcia.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ctx.Errors.Add(new ExecutionError(ex.Message));
                         return signedIn;
                     }
 

@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NextLevelBJJ.ScheduleService\NextLevelBJJ.WebContentServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>
