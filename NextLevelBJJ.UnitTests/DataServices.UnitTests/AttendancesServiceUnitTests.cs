@@ -57,7 +57,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
 
             nextLevelContextMock.Setup(p => p.Attendances).Returns(mockDbSet.Object);
 
-            attendancesSerivce = new AttendancesService(nextLevelContextMock.Object);
+            attendancesSerivce = new AttendancesService(nextLevelContextMock.Object, null);
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetAttendancesAmountTrackedOnPass_NullPassTypesDbSet_ThrowsException()
         {
-            var service = new AttendancesService(new NextLevelContext());
+            var service = new AttendancesService(new NextLevelContext(), null);
 
             var result = Assert.ThrowsException<Exception>(() => service.GetAttendancesAmountTrackedOnPass(1).Result);
 
@@ -140,7 +140,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetStudentAttendences_NullPassTypesDbSet_ThrowsException()
         {
-            var service = new AttendancesService(new NextLevelContext());
+            var service = new AttendancesService(new NextLevelContext(), null);
 
             var result = Assert.ThrowsException<Exception>(() => service.GetStudentAttendences(1, 1, 1).Result);
 
@@ -181,7 +181,7 @@ namespace NextLevelBJJ.UnitTests.DataServices.UnitTests
         [TestMethod]
         public void GetRecentAttendance_NullPassTypesDbSet_ThrowsException()
         {
-            var service = new AttendancesService(new NextLevelContext());
+            var service = new AttendancesService(new NextLevelContext(), null);
 
             var result = Assert.ThrowsException<Exception>(() => service.GetRecentAttendance(1).Result);
 
