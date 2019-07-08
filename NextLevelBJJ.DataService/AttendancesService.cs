@@ -15,6 +15,7 @@ namespace NextLevelBJJ.DataServices
 
         public AttendancesService(NextLevelContext db, IClassesService classesService)
         {
+            db.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
             _db = db;
             _classesService = classesService;
         }

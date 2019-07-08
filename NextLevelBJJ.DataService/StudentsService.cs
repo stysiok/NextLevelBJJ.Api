@@ -12,6 +12,7 @@ namespace NextLevelBJJ.DataServices
 
         public StudentsService(NextLevelContext db)
         {
+            db.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
             _db = db;
         }
 

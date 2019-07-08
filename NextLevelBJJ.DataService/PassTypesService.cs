@@ -13,6 +13,7 @@ namespace NextLevelBJJ.DataServices
 
         public PassTypesService(NextLevelContext db)
         {
+            db.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
             _db = db;
         }
 
