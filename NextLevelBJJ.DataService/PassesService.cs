@@ -15,7 +15,15 @@ namespace NextLevelBJJ.DataServices
 
         public PassesService(NextLevelContext db, IPassTypesService passTypesService, IAttendancesService attendancesService)
         {
-            db.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
+            try
+            {
+                if (db.ChangeTracker != null)
+                    db.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
+            }
+            catch (Exception)
+            {
+            }
+
             _db = db;
             _passTypesService = passTypesService;
             _attendancesService = attendancesService;
