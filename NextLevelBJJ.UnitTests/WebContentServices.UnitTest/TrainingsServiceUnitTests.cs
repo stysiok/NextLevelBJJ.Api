@@ -23,14 +23,14 @@ namespace NextLevelBJJ.UnitTests.WebContentServices.UnitTest
             var html = @"<!DOCTYPE html>
                 <html>
                     <body>
-                        <div id='monday'>18:30 - 19:30 Next Level training poniedzialek</div>
-                        <div id='monday'>11:30 - 12:30 Next Level training poniedzialek</div>
-                        <div id='monday'>14:30 - 15:30 Next Level training poniedzialek</div>
-                        <div id='tuesday'>18:45 - 19:45 Next Level training wtorek</div>
-                        <div id='wednesday'>18:00 - 19:00 &amp; Next &nbsp; Level &Oacute; training środa</div>
-                        <div id='thursday'>11:30 - 12:30 Next Level training czwartek DZIECI</div>
-                        <div id='friday'>12:30 - 13:30 Next Level training piątek</div>
-                        <div id='saturday'>15:30 - 16:30 Next Level training sobota</div>
+                        <div id='monday'>18.30 - 19.30 Next Level training poniedzialek</div>
+                        <div id='monday'>11.30 - 12.30 Next Level training poniedzialek</div>
+                        <div id='monday'>14.30 - 15.30 Next Level training poniedzialek</div>
+                        <div id='tuesday'>18.45 - 19.45 Next Level training wtorek</div>
+                        <div id='wednesday'>18.00 - 19.00 &amp; Next &nbsp; Level &Oacute; training środa</div>
+                        <div id='thursday'>11.30 - 12.30 Next Level training czwartek DZIECI</div>
+                        <div id='friday'>12.30 - 13.30 Next Level training piątek</div>
+                        <div id='saturday'>15.30 - 16.30 Next Level training sobota</div>
                     </body>
                 </html>
                 ";

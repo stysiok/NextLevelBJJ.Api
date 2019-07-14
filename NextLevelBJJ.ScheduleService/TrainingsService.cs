@@ -19,15 +19,15 @@ namespace NextLevelBJJ.WebContentServices
         {
             _daySiteIdDictionary = new Dictionary<DayOfWeek, string>()
             {
-                { DayOfWeek.Monday, "comp-jlqn2pas" },
-                { DayOfWeek.Tuesday, "comp-jlqn2pbf" },
-                { DayOfWeek.Wednesday, "comp-jlqn2pc3" },
-                { DayOfWeek.Thursday, "comp-jlqn2pcf" },
-                { DayOfWeek.Friday, "comp-jlqn2pb3" },
-                { DayOfWeek.Saturday, "comp-jlqn2pbr" },
+                { DayOfWeek.Monday, "comp-jwnx1wkw" },
+                { DayOfWeek.Tuesday, "comp-jxboh9f7" },
+                { DayOfWeek.Wednesday, "comp-jxboha4c" },
+                { DayOfWeek.Thursday, "comp-jxbohd96" },
+                { DayOfWeek.Friday, "comp-jxbohdrr" },
+                { DayOfWeek.Saturday, "comp-jxbohcow" },
             };
             _webHtmlLoadHelper = new WebHtmlLoadHelper();
-            _url = @"https://www.nextlevelbjj.pl/grafik";
+            _url = @"https://www.akademianextlevel.com/grafik";
         }
 
         public TrainingsService(Dictionary<DayOfWeek, string> daySiteIdDictionary, IWebHtmlLoadHelper webHtmlLoadHelper, string url)
@@ -49,7 +49,7 @@ namespace NextLevelBJJ.WebContentServices
             }
 
             var xPathSelector = @"//*[@id='" + _daySiteIdDictionary[dayOfWeek] + "']";
-            var expression = @"(\d{2}:\d{2}) - (\d{2}:\d{2})[\s]{0,}(.*)";
+            var expression = @"(\d{2}.\d{2}) - (\d{2}.\d{2})[\s]{0,}(.*)";
 
             string trainingDayText = "";
             var htmlDocument = _webHtmlLoadHelper.LoadContentFromUrl(_url);
@@ -103,8 +103,8 @@ namespace NextLevelBJJ.WebContentServices
                     {
                         Day = day,
                         Name = m.Groups[3].Value,
-                        StartHour = TimeSpan.Parse(m.Groups[1].Value, CultureInfo.CurrentCulture),
-                        FinishHour = TimeSpan.Parse(m.Groups[2].Value, CultureInfo.CurrentCulture)
+                        StartHour = TimeSpan.ParseExact(m.Groups[1].Value, "hh\\.mm", CultureInfo.CurrentCulture),
+                        FinishHour = TimeSpan.ParseExact(m.Groups[2].Value, "hh\\.mm", CultureInfo.CurrentCulture)
                     };
                 }).ToList();
     }

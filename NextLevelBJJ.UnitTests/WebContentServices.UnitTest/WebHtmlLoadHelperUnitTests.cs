@@ -18,7 +18,7 @@ namespace NextLevelBJJ.UnitTests.WebContentServices.UnitTest
         [TestMethod]
         public void LoadContentFromUrl_ValidUrl_ReturnsHtmlDocument()
         {
-            string url = @"https://www.nextlevelbjj.pl/grafik";
+            string url = @"https://www.akademianextlevel.com/grafik";
 
             var result = webHtmlLoadHelper.LoadContentFromUrl(url);
 
