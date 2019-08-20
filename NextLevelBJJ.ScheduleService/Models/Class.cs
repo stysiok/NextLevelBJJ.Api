@@ -10,11 +10,13 @@ namespace NextLevelBJJ.WebContentServices.Models
 
         public string Name { get; set; }
 
+        public string Room { get; set; }
+
         public TimeSpan StartHour { get; set; }
 
         public TimeSpan FinishHour { get; set; }
 
-        public bool IsKidsClass => Name.Contains("DZIECI");
+        public bool IsKidsClass => Name.Contains("KIDS");
 
     }
 }
